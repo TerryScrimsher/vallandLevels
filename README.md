@@ -1,2 +1,2 @@
 # vallandLevels
-![alt tag](http://www.logicalposition.com/img/homepage-ppc.png)
+![alt tag](https://raw.githubusercontent.com/TerryScrimsher/vallandLevels/master/preview.png)
