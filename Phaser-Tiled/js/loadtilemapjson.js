@@ -15,7 +15,7 @@ function preload() {
     //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
     //  This could be Phaser.Tilemap.CSV too.
 
-    game.load.tilemap('levelMap', 'js/valland-town5.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('levelMap', 'js/valland-town.json', null, Phaser.Tilemap.TILED_JSON);
 
     //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
