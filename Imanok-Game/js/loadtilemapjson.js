@@ -8,7 +8,7 @@ var emoteSpritesheet = "img/emote2.png";
 function preload() {
 
     //Loads level json data
-    game.load.tilemap('levelMap', 'js/valland-town.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('levelMap', 'js/valland-town-update.json', null, Phaser.Tilemap.TILED_JSON);
 
     //Loads level tilesets
     game.load.image('tiles', 'img/a_terrain.png');
@@ -45,20 +45,20 @@ function create() {
     map.addTilesetImage('house', 'tiles3');
     map.addTilesetImage('water_updated', 'tiles4');
     
+    //Map Collision Between Not Working
+    map.setCollisionBetween(0, 6000, true, 'collision', 'true');
+  
     //Builds out level layers
     layer = map.createLayer('Terrain');
-    layer1 = map.createLayer('Water');
-    layer2 = map.createLayer('Bridges');
+//    layer1 = map.createLayer('Water');
+    
     layer3 = map.createLayer('Objects');
-    layer4 = map.createLayer('Fences');
-    layer5 = map.createLayer('Buildings');
+//    layer4 = map.createLayer('Fences');
+//    layer5 = map.createLayer('Buildings');
     layer6 = map.createLayer('Trees');
     layer7 = map.createLayer('Signs');
-
-    //  This resizes the game world to match the layer dimensions
-    layer.resizeWorld();
-  
-    
+    layer8 = map.createLayer('collision');
+    layer2 = map.createLayer('Bridges');
   
     npc1 = game.add.sprite(1494, 1240, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
@@ -75,12 +75,20 @@ function create() {
     //Init player to level
     createPlayer();
     player.body.setSize(38, 28, 6, 44);
+  
+  
+    layer9 = map.createLayer('Overlay');
+  
+    //  This resizes the game world to match the layer dimensions
+    layer.resizeWorld();
+    layer8.resizeWorld();
 }
 
 function update() {
   
     game.physics.arcade.collide(player, npc1);
     game.physics.arcade.collide(player, npc2);
+    game.physics.arcade.collide(player, layer8);
   
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
