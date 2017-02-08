@@ -52,11 +52,11 @@ function create() {
     layer = map.createLayer('Terrain');
 //    layer1 = map.createLayer('Water');
     
-    layer3 = map.createLayer('Objects');
+//    layer3 = map.createLayer('Objects');
 //    layer4 = map.createLayer('Fences');
 //    layer5 = map.createLayer('Buildings');
-    layer6 = map.createLayer('Trees');
-    layer7 = map.createLayer('Signs');
+//    layer6 = map.createLayer('Trees');
+//    layer7 = map.createLayer('Signs');
     layer8 = map.createLayer('collision');
     layer2 = map.createLayer('Bridges');
   
