@@ -46,19 +46,12 @@ function create() {
     map.addTilesetImage('water_updated', 'tiles4');
     
     //Map Collision Between Not Working
-    map.setCollisionBetween(0, 6000, true, 'collision', 'true');
+    map.setCollisionBetween(0, 6000, true, 'Collision', 'true');
   
     //Builds out level layers
     layer = map.createLayer('Terrain');
-//    layer1 = map.createLayer('Water');
-    
-//    layer3 = map.createLayer('Objects');
-//    layer4 = map.createLayer('Fences');
-//    layer5 = map.createLayer('Buildings');
-//    layer6 = map.createLayer('Trees');
-//    layer7 = map.createLayer('Signs');
-    layer8 = map.createLayer('collision');
-    layer2 = map.createLayer('Bridges');
+    layer8 = map.createLayer('Collision');
+    layer2 = map.createLayer('Underlay');
   
     npc1 = game.add.sprite(1494, 1240, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
@@ -74,7 +67,7 @@ function create() {
 
     //Init player to level
     createPlayer();
-    player.body.setSize(38, 28, 6, 44);
+    player.body.setSize(29, 28, 11, 44);
   
   
     layer9 = map.createLayer('Overlay');
@@ -157,6 +150,19 @@ function update() {
             movementDirection = null;
         } 
     }
+    
+    if (game.input.keyboard.isDown(Phaser.Keyboard.L)) {
+        playerLaugh();
+    }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+        playerShock();
+    }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.N)) {
+        playerNo();
+    }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
+        playerYes();
+    }
 }
 
 function render() {
@@ -178,7 +184,6 @@ function standStillUp () {
 }
 function standStillDown () {
     player.loadTexture('playerSprite', 10);
-   
 }
 function standStillLeft () {
     player.loadTexture('playerSprite', 22);
@@ -214,4 +219,25 @@ function moveRight () {
     player.loadTexture('playerSprite');
     player.animations.add('playerSprite', [33, 34, 35, 34]);
     player.animations.play('playerSprite', 5, true);
+}
+
+function playerLaugh () {    
+    player.loadTexture('emoteSprite');
+    player.animations.add('emoteSprite', [33, 34, 35, 34]);
+    player.animations.play('emoteSprite', 8, true);
+}
+function playerNo () {    
+    player.loadTexture('emoteSprite');
+    player.animations.add('emoteSprite', [21, 22, 23, 22]);
+    player.animations.play('emoteSprite', 8, true);
+}
+function playerYes () {    
+    player.loadTexture('emoteSprite');
+    player.animations.add('emoteSprite', [9, 10, 11, 10]);
+    player.animations.play('emoteSprite', 8, true);
+}
+function playerShock () {    
+    player.loadTexture('emoteSprite');
+    player.animations.add('emoteSprite', [45, 46, 47, 46]);
+    player.animations.play('emoteSprite', 8, true);
 }
