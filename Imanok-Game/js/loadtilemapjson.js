@@ -1,5 +1,5 @@
 
-var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render});
+var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render});
 
 //Global variables
 var playerCharacterSpritesheet = "img/chara2.png";
@@ -21,6 +21,10 @@ function preload() {
     
     //Load emote spritesheet
     game.load.spritesheet('emoteSprite', emoteSpritesheet, 52, 72, 70);
+  
+    //Load bitmap font
+//    game.load.bitmapFont('sakredfont', 'fonts/sakredfont.png', 'fonts/sakredfont.fnt');
+    game.load.bitmapFont('sakredfont', 'fonts/font.png', 'fonts/font.fnt');
 
 }
 
@@ -28,6 +32,8 @@ var map;
 var layer;
 var player;
 var movementDirection = null;
+
+//var text1;
 
 function create() {
 
@@ -75,6 +81,15 @@ function create() {
     //  This resizes the game world to match the layer dimensions
     layer.resizeWorld();
     layer8.resizeWorld();
+  
+    
+//    var text1 = game.add.bitmapText(((window.innerWidth * window.devicePixelRatio)/2)-4, ((window.innerHeight * window.devicePixelRatio)/2)-20, 'sakredfont', 'Player', 24);
+//    text1.fixedToCamera = true;
+    var text2 = game.add.bitmapText(100, 70, 'sakredfont', 'Valland', 52);
+    text2.fixedToCamera = true;
+    var text3 = game.add.bitmapText(((window.innerWidth * window.devicePixelRatio)/2)-520, ((window.innerHeight * window.devicePixelRatio))-100, 'sakredfont', 'W/A/S/D to Move, O/N/L/Y for Emojis', 60);
+    text3.fixedToCamera = true;
+  
 }
 
 function update() {
@@ -85,6 +100,9 @@ function update() {
   
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
+  
+//    text1.x = Math.floor(player.x + player.width / 2);
+//    text1.y = Math.floor(player.y + player.height / 2);
   
     if (game.input.keyboard.isDown(Phaser.Keyboard.A))
     {
