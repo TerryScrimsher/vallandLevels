@@ -126,33 +126,33 @@ level1.prototype = {
 
           if (this.movementDirection == "up") {
               this.standStillUp();
-              movementDirection = null;
+              this.movementDirection = null;
           }
           if (this.movementDirection == "down") {
               this.standStillDown();
-              movementDirection = null;
+              this.movementDirection = null;
           }
           if (this.movementDirection == "left") {
               this.standStillLeft();
-              movementDirection = null;
+              this.movementDirection = null;
           }
           if (this.movementDirection == "right") {
               this.standStillRight();
-              movementDirection = null;
+              this.movementDirection = null;
           } 
       }
 
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-          playerLaugh();
+          this.playerLaugh();
       }
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-          playerShock();
+          this.playerShock();
       }
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
-          playerNo();
+          this.playerNo();
       }
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
-          playerYes();
+          this.playerYes();
       }
       if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
           this.game.state.start("Level2",true,false);
