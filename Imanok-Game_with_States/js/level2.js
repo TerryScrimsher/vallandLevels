@@ -167,7 +167,7 @@ render: function () {
 
 createPlayer: function  () {
     player = this.game.add.sprite(52, 74, 'playerSprite', 10);
-    player.x = 1570;
+    player.x = 10;
     player.y = 1330;
     this.game.physics.arcade.enable(player);
     this.game.camera.follow(player);
