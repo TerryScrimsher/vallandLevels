@@ -11,7 +11,8 @@ preload.prototype = {
           this.load.setPreloadSprite(loadingBar);
       
     //Loads level json data
-    this.game.load.tilemap('levelMap', 'js/valland-town-update.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('levelMap1', 'js/valland-town-update.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('levelMap2', 'js/valland-graveyard.json', null, Phaser.Tilemap.TILED_JSON);
     
     //Load player spritesheet
     this.game.load.spritesheet('playerSprite', playerCharacterSpritesheet, 52, 74, 70);
@@ -24,10 +25,12 @@ preload.prototype = {
     this.game.load.image('tiles2', 'img/outside.png');
     this.game.load.image('tiles3', 'img/house.png');
     this.game.load.image('tiles4', 'img/water_updated.png');
+    this.game.load.image('tiles5', 'img/castle.png');
   
     //Load bitmap font
 //    game.load.bitmapFont('sakredfont', 'fonts/sakredfont.png', 'fonts/sakredfont.fnt');
-    this.game.load.bitmapFont('sakredfont', 'fonts/font.png', 'fonts/font.fnt');
+    this.game.load.bitmapFont('sakredfont', 'fonts/sakredfont2.png', 'fonts/sakredfont2.fnt');
+    this.game.load.bitmapFont('quirkfont', 'fonts/quirkfont.png', 'fonts/quirkfont.fnt');
 
 	},
   	create: function(){
