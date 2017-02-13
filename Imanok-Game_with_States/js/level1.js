@@ -71,6 +71,13 @@ level1.prototype = {
     exit.body.immovable = true;
     exit.scale.x = .1;
     exit.scale.y = 2;
+    
+    //Exit: Potionshop    
+    exitPotshop = this.game.add.sprite(1376, 1290);
+    this.game.physics.arcade.enable(exitPotshop);
+    exitPotshop.body.immovable = true;
+    exitPotshop.scale.x = 1;
+    exitPotshop.scale.y = .1;
 
     //Init player to level
     this.createPlayer(playerX, playerY, playerDirection);
@@ -97,7 +104,8 @@ level1.prototype = {
     this.game.physics.arcade.collide(player, layer8);
 
     this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
-
+    this.game.physics.arcade.collide(player, exitPotshop, this.exitPotshop, null, this);
+    
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
 
@@ -176,8 +184,8 @@ level1.prototype = {
   },
 
   render: function() {
-    //    this.game.debug.body(player);
-    //    this.game.debug.body(exit);
+//        this.game.debug.body(player);
+//        this.game.debug.body(exitPotshop);
   },
 
   createPlayer: function(playerX, playerY, playerDirection) {
@@ -254,8 +262,10 @@ level1.prototype = {
   },
   exitLevel: function() {
     this.game.state.start("Level2", true, false, 3150, player.y, "left");
+  },
+  exitPotshop: function() {
+    this.game.state.start("Level1-Potshop", true, false, 774, 940, "up");
   }
-
 }
 
 console.log("%cLevel1", "color:white; background:red");

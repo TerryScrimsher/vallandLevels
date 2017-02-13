@@ -35,7 +35,7 @@ level1potshop.prototype = {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Background color
-    this.game.stage.backgroundColor = '#787878';
+    this.game.stage.backgroundColor = '#354149';
 
     map = this.game.add.tilemap('levelMap1-potshop');
 
@@ -58,24 +58,18 @@ level1potshop.prototype = {
 //    layer2 = map.createLayer('Underlay');
     layer11 = map.createLayer('Objects');
 
-    npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
+    npc1 = this.game.add.sprite(966, 598, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
     npc1.animations.play('emoteSprite', 8, true);
     this.game.physics.arcade.enable(npc1);
     npc1.body.immovable = true;
 
-    npc2 = this.game.add.sprite(2020, 1430, 'emoteSprite', 1);
-    npc2.animations.add('emoteSprite', [66, 67, 68, 67]);
-    npc2.animations.play('emoteSprite', 4, true);
-    this.game.physics.arcade.enable(npc2);
-    npc2.body.immovable = true;
-
-    //Exit    
-    exit = this.game.add.sprite(1, 1344);
-    this.game.physics.arcade.enable(exit);
-    exit.body.immovable = true;
-    exit.scale.x = .1;
-    exit.scale.y = 2;
+    //Exit: Potionshop    
+    exitPotshop = this.game.add.sprite(768, 1020);
+    this.game.physics.arcade.enable(exitPotshop);
+    exitPotshop.body.immovable = true;
+    exitPotshop.scale.x = 2;
+    exitPotshop.scale.y = .1;
 
     //Init player to level
     this.createPlayer(playerX, playerY, playerDirection);
@@ -98,11 +92,10 @@ level1potshop.prototype = {
   update: function() {
 
     this.game.physics.arcade.collide(player, npc1);
-    this.game.physics.arcade.collide(player, npc2);
     this.game.physics.arcade.collide(player, layer8);
     this.game.physics.arcade.collide(player, layer11);
 
-    this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
+    this.game.physics.arcade.collide(player, exitPotshop, this.exitLevel, null, this);
 
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
@@ -182,8 +175,8 @@ level1potshop.prototype = {
   },
 
   render: function() {
-    //    this.game.debug.body(player);
-    //    this.game.debug.body(exit);
+//        this.game.debug.body(player);
+//        this.game.debug.body(exitPotshop);
   },
 
   createPlayer: function(playerX, playerY, playerDirection) {
@@ -259,7 +252,7 @@ level1potshop.prototype = {
     player.animations.play('emoteSprite', 8, true);
   },
   exitLevel: function() {
-    this.game.state.start("Level2", true, false, 3150, player.y, "left");
+    this.game.state.start("Level1", true, false, 1367, 1266, "down");
   }
 
 }
