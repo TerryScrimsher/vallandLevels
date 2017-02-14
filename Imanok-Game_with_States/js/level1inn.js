@@ -1,4 +1,4 @@
-var level1 = function(game) {
+var level1inn = function(game) {
 
   var map;
   var layer;
@@ -11,17 +11,17 @@ var level1 = function(game) {
   //var text1;
 }
 
-level1.prototype = {
+level1inn.prototype = {
   init: function(customParam1, customParam2, customDirection) {
     if (customParam1) {
       playerX = customParam1;
     } else {
-      playerX = 1570;
+      playerX = 300;
     }
     if (customParam2) {
       playerY = customParam2;
     } else {
-      playerY = 1330;
+      playerY = 300;
     }
     if (customDirection) {
       playerDirection = customDirection;
@@ -35,63 +35,42 @@ level1.prototype = {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //Background color
-    this.game.stage.backgroundColor = '#787878';
+    this.game.stage.backgroundColor = '#354149';
 
-    map = this.game.add.tilemap('levelMap1');
+    map = this.game.add.tilemap('levelMap1-inn');
 
     //Adds tilesets to map
-    map.addTilesetImage('a_terrain', 'tiles');
-    map.addTilesetImage('outside', 'tiles2');
-    map.addTilesetImage('house', 'tiles3');
-    map.addTilesetImage('water_updated', 'tiles4');
+//    map.addTilesetImage('a_terrain', 'tiles');
+//    map.addTilesetImage('outside', 'tiles2');
+//    map.addTilesetImage('house', 'tiles3');
+//    map.addTilesetImage('water_updated', 'tiles4');
+    map.addTilesetImage('inside', 'tiles6');
+    map.addTilesetImage('inside_ceilingborders_updated', 'tiles7');
+    map.addTilesetImage('tiles_kitchen', 'tiles8');
 
     //Map Collision Between Not Working
     map.setCollisionBetween(0, 10000, true, 'Collision', 'true');
+    map.setCollisionBetween(0, 10000, true, 'Objects', 'true');
 
     //Builds out level layers
-    layer = map.createLayer('Terrain');
+//    layer = map.createLayer('Terrain');
+    layer = map.createLayer('Floor');
     layer8 = map.createLayer('Collision');
-    layer2 = map.createLayer('Underlay');
+//    layer2 = map.createLayer('Underlay');
+    layer11 = map.createLayer('Objects');
 
-    npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
+    npc1 = this.game.add.sprite(935, 572, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
     npc1.animations.play('emoteSprite', 8, true);
     this.game.physics.arcade.enable(npc1);
     npc1.body.immovable = true;
 
-    npc2 = this.game.add.sprite(2020, 1430, 'emoteSprite', 1);
-    npc2.animations.add('emoteSprite', [66, 67, 68, 67]);
-    npc2.animations.play('emoteSprite', 4, true);
-    this.game.physics.arcade.enable(npc2);
-    npc2.body.immovable = true;
-
-    //Exit    
-    exit = this.game.add.sprite(1, 1344);
-    this.game.physics.arcade.enable(exit);
-    exit.body.immovable = true;
-    exit.scale.x = .1;
-    exit.scale.y = 2;
-    
     //Exit: Potionshop    
-    exitPotshop = this.game.add.sprite(1760, 1640);
+    exitPotshop = this.game.add.sprite(768, 1020);
     this.game.physics.arcade.enable(exitPotshop);
     exitPotshop.body.immovable = true;
-    exitPotshop.scale.x = 1;
+    exitPotshop.scale.x = 2;
     exitPotshop.scale.y = .1;
-    
-    //Exit: Inn    
-    exitInn = this.game.add.sprite(1376, 1290);
-    this.game.physics.arcade.enable(exitInn);
-    exitInn.body.immovable = true;
-    exitInn.scale.x = 1;
-    exitInn.scale.y = .1;
-    
-    //Exit: Blacksmith    
-    exitBlacksmith = this.game.add.sprite(2272, 1290);
-    this.game.physics.arcade.enable(exitBlacksmith);
-    exitBlacksmith.body.immovable = true;
-    exitBlacksmith.scale.x = 1;
-    exitBlacksmith.scale.y = .1;
 
     //Init player to level
     this.createPlayer(playerX, playerY, playerDirection);
@@ -114,14 +93,11 @@ level1.prototype = {
   update: function() {
 
     this.game.physics.arcade.collide(player, npc1);
-    this.game.physics.arcade.collide(player, npc2);
     this.game.physics.arcade.collide(player, layer8);
+    this.game.physics.arcade.collide(player, layer11);
 
-    this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
-    this.game.physics.arcade.collide(player, exitPotshop, this.exitPotshop, null, this);
-    this.game.physics.arcade.collide(player, exitInn, this.exitInn, null, this);
-    this.game.physics.arcade.collide(player, exitBlacksmith, this.exitBlacksmith, null, this);
-    
+    this.game.physics.arcade.collide(player, exitPotshop, this.exitLevel, null, this);
+
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
 
@@ -202,8 +178,6 @@ level1.prototype = {
   render: function() {
 //        this.game.debug.body(player);
 //        this.game.debug.body(exitPotshop);
-//        this.game.debug.body(exitInn);
-//        this.game.debug.body(exitBlacksmith);
   },
 
   createPlayer: function(playerX, playerY, playerDirection) {
@@ -279,17 +253,9 @@ level1.prototype = {
     player.animations.play('emoteSprite', 8, true);
   },
   exitLevel: function() {
-    this.game.state.start("Level2", true, false, 3150, player.y, "left");
-  },
-  exitPotshop: function() {
-    this.game.state.start("Level1-Potshop", true, false, 774, 940, "up");
-  },
-  exitInn: function() {
-    this.game.state.start("Level1-Inn", true, false, 774, 940, "up");
-  },
-  exitBlacksmith: function() {
-    this.game.state.start("Level1-Blacksmith", true, false, 774, 940, "up");
+    this.game.state.start("Level1", true, false, 1367, 1266, "down");
   }
+
 }
 
-console.log("%cLevel1", "color:white; background:red");
+console.log("%cLevel1 Potionshop", "color:white; background:red");

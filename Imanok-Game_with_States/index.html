@@ -10,6 +10,8 @@
       <script src="js/preload.js"></script>
       <script src="js/level1.js"></script>
       <script src="js/level1potshop.js"></script>
+      <script src="js/level1inn.js"></script>
+      <script src="js/level1blacksmith.js"></script>
       <script src="js/level2.js"></script>
         <style>
     			body{margin:0}
@@ -20,7 +22,9 @@
           game.state.add("Boot",boot);
           game.state.add("Preload",preload);
           game.state.add("Level1",level1);
-          game.state.add("Level1-Potshop",level1potshop);    
+          game.state.add("Level1-Potshop",level1potshop);  
+          game.state.add("Level1-Inn",level1inn); 
+          game.state.add("Level1-Blacksmith",level1blacksmith); 
           game.state.add("Level2",level2);
           game.state.start("Boot");
         })();    
