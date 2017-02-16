@@ -16,6 +16,8 @@ preload.prototype = {
     this.game.load.tilemap('levelMap1-potshop', 'js/valland-town-potionshop.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.tilemap('levelMap1-inn', 'js/valland-town-inn.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.tilemap('levelMap1-blacksmith', 'js/valland-town-blacksmith.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('levelMap1-itemshop', 'js/valland-town-itemshop.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('levelMap1-playerhouse', 'js/valland-town-playerhouse.json', null, Phaser.Tilemap.TILED_JSON);
     
     //Load player spritesheet
     this.game.load.spritesheet('playerSprite', playerCharacterSpritesheet, 52, 74, 70);

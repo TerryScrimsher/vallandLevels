@@ -252,7 +252,7 @@ level1blacksmith.prototype = {
     player.animations.play('emoteSprite', 8, true);
   },
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 2263, 1266, "down");
+    this.game.state.start("Level1", true, false, 2263, 1272, "down");
   }
 
 }
