@@ -65,7 +65,7 @@ level1ranch.prototype = {
     npc1.body.immovable = true;
 
     //Exit: Potionshop    
-    exitPotshop = this.game.add.sprite(768, 1020);
+    exitPotshop = this.game.add.sprite(897, 1020);
     this.game.physics.arcade.enable(exitPotshop);
     exitPotshop.body.immovable = true;
     exitPotshop.scale.x = 2;
@@ -83,8 +83,9 @@ level1ranch.prototype = {
 
     //    var text1 = game.add.bitmapText(((window.innerWidth * window.devicePixelRatio)/2)-4, ((window.innerHeight * window.devicePixelRatio)/2)-20, 'sakredfont', 'Player', 24);
     //    text1.fixedToCamera = true;
-    var text2 = this.game.add.bitmapText(60, 60, 'sakredfont', 'Valland: Town', 52);
+    var text2 = this.game.add.bitmapText(60, 60, 'sakredfont', 'Valland: Ranch', 52);
     text2.fixedToCamera = true;
+    this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     var text3 = this.game.add.bitmapText(90, 160, 'quirkfont', 'W/A/S/D to Move\nL = Laugh\nO = Surprised\nY = Yes\nN = No\nT = Teleport', 30);
     text3.fixedToCamera = true;
 
@@ -252,7 +253,7 @@ level1ranch.prototype = {
     player.animations.play('emoteSprite', 8, true);
   },
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 2488, 850, "down");
+    this.game.state.start("Level1", true, false, 631, 240, "down");
   }
 }
 

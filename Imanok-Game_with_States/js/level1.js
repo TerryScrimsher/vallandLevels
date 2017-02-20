@@ -113,6 +113,13 @@ level1.prototype = {
     exitLodge.body.immovable = true;
     exitLodge.scale.x = 1;
     exitLodge.scale.y = .1;
+    
+    //Exit: Ranch  
+    exitRanch = this.game.add.sprite(640, 262);
+    this.game.physics.arcade.enable(exitRanch);
+    exitRanch.body.immovable = true;
+    exitRanch.scale.x = 1;
+    exitRanch.scale.y = .1;
 
     //Init player to level
     this.createPlayer(playerX, playerY, playerDirection);
@@ -128,6 +135,7 @@ level1.prototype = {
     //    text1.fixedToCamera = true;
     var text2 = this.game.add.bitmapText(60, 60, 'sakredfont', 'Valland: Town', 52);
     text2.fixedToCamera = true;
+    this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     var text3 = this.game.add.bitmapText(90, 160, 'quirkfont', 'W/A/S/D to Move\nL = Laugh\nO = Surprised\nY = Yes\nN = No\nT = Teleport', 30);
     text3.fixedToCamera = true;
 
@@ -145,6 +153,7 @@ level1.prototype = {
     this.game.physics.arcade.collide(player, exitPlayerhouse, this.exitPlayerhouse, null, this);
     this.game.physics.arcade.collide(player, exitItemshop, this.exitItemshop, null, this);
     this.game.physics.arcade.collide(player, exitLodge, this.exitLodge, null, this);
+    this.game.physics.arcade.collide(player, exitRanch, this.exitRanch, null, this);
     
     player.body.velocity.y = 0;
     player.body.velocity.x = 0;
@@ -225,7 +234,7 @@ level1.prototype = {
 
   render: function() {
 //        this.game.debug.body(player);
-//        this.game.debug.body(exitLodge);
+//        this.game.debug.body(exitRanch);
   },
 
   createPlayer: function(playerX, playerY, playerDirection) {
@@ -320,6 +329,9 @@ level1.prototype = {
   },
   exitLodge: function() {
     this.game.state.start("Level1-Lodge", true, false, 774, 940, "up");
+  },
+  exitRanch: function() {
+    this.game.state.start("Level1-Ranch", true, false, 903, 940, "up");
   }
 }
 
