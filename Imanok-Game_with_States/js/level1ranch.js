@@ -65,7 +65,7 @@ level1ranch.prototype = {
     npc1.body.immovable = true;
 
     //Exit: Potionshop    
-    exitPotshop = this.game.add.sprite(897, 1020);
+    exitPotshop = this.game.add.sprite(1120, 1020);
     this.game.physics.arcade.enable(exitPotshop);
     exitPotshop.body.immovable = true;
     exitPotshop.scale.x = 2;

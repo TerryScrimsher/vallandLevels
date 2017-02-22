@@ -248,7 +248,6 @@ level1.prototype = {
 
     this.movementDirection = playerDirection;
   },
-
   standStillUp: function() {
     player.loadTexture('playerSprite', 46);
   },
@@ -331,7 +330,7 @@ level1.prototype = {
     this.game.state.start("Level1-Lodge", true, false, 774, 940, "up");
   },
   exitRanch: function() {
-    this.game.state.start("Level1-Ranch", true, false, 903, 940, "up");
+    this.game.state.start("Level1-Ranch", true, false, 1127, 940, "up");
   }
 }
 
