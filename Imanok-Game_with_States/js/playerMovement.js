@@ -12,6 +12,63 @@ Pipe.prototype.constructor = Pipe;
 	
 Pipe.prototype.update = function() {};	
 
+
+
+Player = function (game, x, y) {
+		Phaser.Sprite.call(this, game, x, y, "playerSprite", 10);
+    this.x = x;
+    this.y = y;
+    this.game.physics.arcade.enable(this);
+//    this.game.camera.follow(this);
+    this.body.collideWorldBounds = true;
+    this.body.linearDamping = 1;
+  
+    this.movementDirection = playerDirection;
+  
+};
+
+Player.prototype = Object.create(Phaser.Sprite.prototype);
+Player.prototype.constructor = Player;
+	
+Player.prototype.update = function() {
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+
+      this.body.velocity.x -= 10;
+
+      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+        this.body.velocity.y -= 10;
+      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
+        this.body.velocity.y += 10;
+      }
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+
+      this.body.velocity.x += 10;
+
+      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+        this.body.velocity.y -= 10;
+      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
+        this.body.velocity.y += 10;
+      }
+
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+
+      this.body.velocity.y -= 10;
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
+
+      this.body.velocity.y += 10;
+    }
+  
+//  
+//    this.body.velocity.y = 0;
+//    this.body.velocity.x = 0;
+
+  
+	};	
+
+
+
+
+
 //  moveUp: function() {
 //    this.movementDirection = "up";
 //

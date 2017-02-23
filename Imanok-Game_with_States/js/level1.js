@@ -54,6 +54,7 @@ level1.prototype = {
     layer2 = map.createLayer('Underlay');
 
     pipeGroup = this.game.add.group();
+    playerGroup = this.game.add.group();
     
     npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
@@ -130,7 +131,11 @@ level1.prototype = {
     //Init player to level
     this.createPlayer(playerX, playerY, playerDirection);
     player.body.setSize(29, 28, 11, 44);
-
+    
+    var player2 = new Player(this.game,1570,1530);
+		this.game.add.existing(player2);
+    playerGroup.add(player2);
+    
     layer9 = map.createLayer('Overlay');
 
     //  This resizes the game world to match the layer dimensions
@@ -152,7 +157,8 @@ level1.prototype = {
     this.game.physics.arcade.collide(player, npc2);
     this.game.physics.arcade.collide(player, layer8);
     this.game.physics.arcade.collide(player, pipeGroup);
-
+    this.game.physics.arcade.collide(player, playerGroup);
+    
     this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
     this.game.physics.arcade.collide(player, exitPotshop, this.exitPotshop, null, this);
     this.game.physics.arcade.collide(player, exitInn, this.exitInn, null, this);
