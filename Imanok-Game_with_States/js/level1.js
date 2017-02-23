@@ -53,6 +53,8 @@ level1.prototype = {
     layer8 = map.createLayer('Collision');
     layer2 = map.createLayer('Underlay');
 
+    pipeGroup = this.game.add.group();
+    
     npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
     npc1.animations.play('emoteSprite', 8, true);
@@ -64,7 +66,11 @@ level1.prototype = {
     npc2.animations.play('emoteSprite', 4, true);
     this.game.physics.arcade.enable(npc2);
     npc2.body.immovable = true;
-
+    
+    var upperPipe = new Pipe(this.game,2020,1530);
+		this.game.add.existing(upperPipe);
+    pipeGroup.add(upperPipe);
+    
     //Exit    
     exit = this.game.add.sprite(1, 1344);
     this.game.physics.arcade.enable(exit);
@@ -145,6 +151,7 @@ level1.prototype = {
     this.game.physics.arcade.collide(player, npc1);
     this.game.physics.arcade.collide(player, npc2);
     this.game.physics.arcade.collide(player, layer8);
+    this.game.physics.arcade.collide(player, pipeGroup);
 
     this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
     this.game.physics.arcade.collide(player, exitPotshop, this.exitPotshop, null, this);
@@ -333,5 +340,7 @@ level1.prototype = {
     this.game.state.start("Level1-Ranch", true, false, 1127, 940, "up");
   }
 }
+
+
 
 console.log("%cLevel1", "color:white; background:red");

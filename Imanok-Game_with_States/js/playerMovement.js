@@ -1,18 +1,16 @@
-var playerMovement = function(game){}
+Pipe = function (game, x, y) {
+		Phaser.Sprite.call(this, game, x, y, "emoteSprite");
+		game.physics.enable(this, Phaser.Physics.ARCADE);	
+    this.animations.add('emoteSprite', [66, 67, 68, 67]);
+    this.animations.play('emoteSprite', 4, true);
+    this.game.physics.arcade.enable(this);
+    this.body.immovable = true;
+};
 
-level1.prototype.standStillUp = function() {
-    player.loadTexture('playerSprite', 46);
-} 
-level1.prototype.standStillDown = function() {
-    player.loadTexture('playerSprite', 10);
-}  
-level1.prototype.standStillLeft = function() {
-    player.loadTexture('playerSprite', 22);
-}  
-level1.prototype.standStillRight = function() {
-    player.loadTexture('playerSprite', 34);
-}  
-
+Pipe.prototype = Object.create(Phaser.Sprite.prototype);
+Pipe.prototype.constructor = Pipe;
+	
+Pipe.prototype.update = function() {};	
 
 //  moveUp: function() {
 //    this.movementDirection = "up";
