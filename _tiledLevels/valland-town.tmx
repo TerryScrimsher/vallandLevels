@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="a_terrain" tilewidth="32" tileheight="32" tilecount="1643" columns="53">
-  <image source="a_terrain.png" width="1696" height="992"/>
+  <image source="../_spritesheets/a_terrain.png" width="1696" height="992"/>
  </tileset>
  <tileset firstgid="1644" name="house" tilewidth="32" tileheight="32" tilecount="1925" columns="55">
-  <image source="house.png" width="1760" height="1120"/>
+  <image source="../_spritesheets/house.png" width="1760" height="1120"/>
  </tileset>
  <tileset firstgid="3569" name="outside" tilewidth="32" tileheight="32" tilecount="1568" columns="56">
-  <image source="outside.png" width="1792" height="896"/>
+  <image source="../_spritesheets/outside.png" width="1792" height="896"/>
  </tileset>
  <tileset firstgid="5137" name="water_updated" tilewidth="32" tileheight="32" tilecount="2420" columns="44">
-  <image source="water_updated.png" width="1408" height="1760"/>
+  <image source="../_spritesheets/water_updated.png" width="1408" height="1760"/>
  </tileset>
  <layer name="Terrain" width="100" height="100">
   <data encoding="csv">

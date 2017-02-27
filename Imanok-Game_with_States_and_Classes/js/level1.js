@@ -133,7 +133,7 @@ level1.prototype = {
 //    this.createPlayer(playerX, playerY, playerDirection);
 //    player.body.setSize(29, 28, 11, 44);
     
-    var player2 = new Player(this.game,1570,1530);
+    player2 = new Player(this.game,1570,1530);
 		this.game.add.existing(player2);
     playerGroup.add(player2);
     this.game.physics.arcade.enable(playerGroup);
@@ -250,7 +250,7 @@ level1.prototype = {
 
   render: function() {
 //        this.game.debug.body(player);
-//        this.game.debug.body(player2);
+        this.game.debug.body(player2);
   },
 
 //  createPlayer: function(playerX, playerY, playerDirection) {

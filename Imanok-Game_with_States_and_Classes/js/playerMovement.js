@@ -102,7 +102,7 @@ Player.prototype.update = function() {
 	};	
 
   Player.prototype.render = function() {
-  
+    this.game.debug.body(this);
   };
 
 

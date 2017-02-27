@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="inside" tilewidth="32" tileheight="32" tilecount="1645" columns="47">
-  <image source="inside.png" width="1504" height="1120"/>
+  <image source="../_spritesheets/inside.png" width="1504" height="1120"/>
  </tileset>
  <tileset firstgid="1646" name="inside_ceilingborders_updated" tilewidth="32" tileheight="32" tilecount="135" columns="15">
-  <image source="inside_ceilingborders_updated.png" width="480" height="288"/>
+  <image source="../_spritesheets/inside_ceilingborders_updated.png" width="480" height="288"/>
   <tile id="16">
    <properties>
     <property name="collision" value="true"/>
