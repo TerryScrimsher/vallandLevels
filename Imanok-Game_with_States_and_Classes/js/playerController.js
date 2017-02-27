@@ -1,21 +1,9 @@
-Pipe = function (game, x, y) {
-		Phaser.Sprite.call(this, game, x, y, "emoteSprite");
-		game.physics.enable(this, Phaser.Physics.ARCADE);	
-    this.animations.add('emoteSprite', [66, 67, 68, 67]);
-    this.animations.play('emoteSprite', 4, true);
-    this.game.physics.arcade.enable(this);
-    this.body.immovable = true;
-};
 
-Pipe.prototype = Object.create(Phaser.Sprite.prototype);
-Pipe.prototype.constructor = Pipe;
-	
-Pipe.prototype.update = function() {};	
 
 
 var PlayerDirection = null;
 
-Player = function (game, x, y) {
+Player = function (game, x, y, playerDirection) {
 		Phaser.Sprite.call(this, game, x, y, "playerSprite", 10);
     this.x = x;
     this.y = y;
@@ -97,12 +85,28 @@ Player.prototype.update = function() {
         this.PlayerDirection = null;
       }
     }
+  
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
+      playerLaugh(this);
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+      playerShock(this);
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
+      playerNo(this);
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
+      playerYes(this);
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
+      this.game.state.start("Level1", true, false);
+    }
 
   
 	};	
 
   Player.prototype.render = function() {
-    this.game.debug.body(this);
+//    this.game.debug.body(this);
   };
 
 
@@ -147,23 +151,23 @@ Player.prototype.update = function() {
     obj.animations.add('playerSprite', [33, 34, 35, 34]);
     obj.animations.play('playerSprite', 5, true);
   }
-//  playerLaugh: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [33, 34, 35, 34]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerNo: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [21, 22, 23, 22]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerYes: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [9, 10, 11, 10]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerShock: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [45, 46, 47, 46]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
+  function playerLaugh (obj) {
+    obj.loadTexture('emoteSprite');
+    obj.animations.add('emoteSprite', [33, 34, 35, 34]);
+    obj.animations.play('emoteSprite', 8, true);
+  }
+  function playerNo (obj) {
+    obj.loadTexture('emoteSprite');
+    obj.animations.add('emoteSprite', [21, 22, 23, 22]);
+    obj.animations.play('emoteSprite', 8, true);
+  }
+  function playerYes (obj) {
+    obj.loadTexture('emoteSprite');
+    obj.animations.add('emoteSprite', [9, 10, 11, 10]);
+    obj.animations.play('emoteSprite', 8, true);
+  }
+  function playerShock (obj) {
+    obj.loadTexture('emoteSprite');
+    obj.animations.add('emoteSprite', [45, 46, 47, 46]);
+    obj.animations.play('emoteSprite', 8, true);
+  }

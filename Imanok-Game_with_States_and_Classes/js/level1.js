@@ -4,6 +4,7 @@ var level1 = function(game) {
   var layer;
   var player;
   var player2;
+  var baldy;
   var movementDirection = null;
 
   var playerX;
@@ -54,7 +55,7 @@ level1.prototype = {
     layer8 = map.createLayer('Collision');
     layer2 = map.createLayer('Underlay');
 
-    pipeGroup = this.game.add.group();
+    npcGroup = this.game.add.group();
     playerGroup = this.game.add.group();
     
     npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
@@ -69,9 +70,9 @@ level1.prototype = {
     this.game.physics.arcade.enable(npc2);
     npc2.body.immovable = true;
     
-    var upperPipe = new Pipe(this.game,2020,1530);
-		this.game.add.existing(upperPipe);
-    pipeGroup.add(upperPipe);
+    baldy = new walkingNPC(this.game,2020,1530, 'Smith');
+		this.game.add.existing(baldy);
+    npcGroup.add(baldy);
     
     //Exit    
     exit = this.game.add.sprite(1, 1344);
@@ -128,15 +129,13 @@ level1.prototype = {
     exitRanch.body.immovable = true;
     exitRanch.scale.x = 1;
     exitRanch.scale.y = .1;
-
-    //Init player to level
-//    this.createPlayer(playerX, playerY, playerDirection);
-//    player.body.setSize(29, 28, 11, 44);
     
-    player2 = new Player(this.game,1570,1530);
+    player2 = new Player(this.game, playerX, playerY, playerDirection);
+    
 		this.game.add.existing(player2);
     playerGroup.add(player2);
     this.game.physics.arcade.enable(playerGroup);
+    this.game.physics.arcade.enable(npcGroup);
     
     layer9 = map.createLayer('Overlay');
 
@@ -158,9 +157,14 @@ level1.prototype = {
     this.game.physics.arcade.collide(playerGroup, npc1);
     this.game.physics.arcade.collide(playerGroup, npc2);
     this.game.physics.arcade.collide(playerGroup, layer8);
-    this.game.physics.arcade.collide(playerGroup, pipeGroup);
+    this.game.physics.arcade.collide(playerGroup, npcGroup);
     this.game.physics.arcade.collide(playerGroup, playerGroup);
-    this.game.physics.arcade.collide(playerGroup, layer8);
+    
+    this.game.physics.arcade.collide(npcGroup, npc1);
+    this.game.physics.arcade.collide(npcGroup, npc2);
+    this.game.physics.arcade.collide(npcGroup, layer8);
+    this.game.physics.arcade.collide(npcGroup, playerGroup);
+    this.game.physics.arcade.collide(npcGroup, npcGroup);
     
     this.game.physics.arcade.collide(playerGroup, exit, this.exitLevel, null, this);
     this.game.physics.arcade.collide(playerGroup, exitPotshop, this.exitPotshop, null, this);
@@ -170,160 +174,13 @@ level1.prototype = {
     this.game.physics.arcade.collide(playerGroup, exitItemshop, this.exitItemshop, null, this);
     this.game.physics.arcade.collide(playerGroup, exitLodge, this.exitLodge, null, this);
     this.game.physics.arcade.collide(playerGroup, exitRanch, this.exitRanch, null, this);
-    
-//    player.body.velocity.y = 0;
-//    player.body.velocity.x = 0;
-
-    //    text1.x = Math.floor(player.x + player.width / 2);
-    //    text1.y = Math.floor(player.y + player.height / 2);
-
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-//      if (this.movementDirection != "left") {
-//        this.moveLeft();
-//      }
-//      player.body.velocity.x -= 400;
-//
-//      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-//        player.body.velocity.y -= 400;
-//      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-//        player.body.velocity.y += 400;
-//      }
-//    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-//      if (this.movementDirection != "right") {
-//        this.moveRight();
-//      }
-//      player.body.velocity.x += 400;
-//
-//      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-//        player.body.velocity.y -= 400;
-//      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-//        player.body.velocity.y += 400;
-//      }
-//
-//    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-//      if (this.movementDirection != "up") {
-//        this.moveUp();
-//      }
-//      player.body.velocity.y -= 400;
-//    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-//      if (this.movementDirection != "down") {
-//        this.moveDown();
-//      }
-//      player.body.velocity.y += 400;
-//    } else {
-//
-//      if (this.movementDirection == "up") {
-//        this.standStillUp();
-//        this.movementDirection = null;
-//      }
-//      if (this.movementDirection == "down") {
-//        this.standStillDown();
-//        this.movementDirection = null;
-//      }
-//      if (this.movementDirection == "left") {
-//        this.standStillLeft();
-//        this.movementDirection = null;
-//      }
-//      if (this.movementDirection == "right") {
-//        this.standStillRight();
-//        this.movementDirection = null;
-//      }
-//    }
-//
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-//      this.playerLaugh();
-//    }
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-//      this.playerShock();
-//    }
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
-//      this.playerNo();
-//    }
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
-//      this.playerYes();
-//    }
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
-//      this.game.state.start("Level2", true, false);
-//    }
 
   },
 
   render: function() {
-//        this.game.debug.body(player);
-        this.game.debug.body(player2);
+//    this.game.debug.body(baldy);
   },
 
-//  createPlayer: function(playerX, playerY, playerDirection) {
-//    player = this.game.add.sprite(52, 74, 'playerSprite', 10);
-//    player.x = playerX;
-//    player.y = playerY;
-//    this.game.physics.arcade.enable(player);
-//    this.game.camera.follow(player);
-//    player.body.collideWorldBounds = true;
-//    player.body.linearDamping = 1;
-//
-//    this.movementDirection = playerDirection;
-//  },
-//  standStillUp: function() {
-//    player.loadTexture('playerSprite', 46);
-//  },
-//  standStillDown: function() {
-//    player.loadTexture('playerSprite', 10);
-//  },
-//  standStillLeft: function() {
-//    player.loadTexture('playerSprite', 22);
-//  },
-//  standStillRight: function() {
-//    player.loadTexture('playerSprite', 34);
-//  },
-//  moveUp: function() {
-//    this.movementDirection = "up";
-//
-//    player.loadTexture('playerSprite');
-//    player.animations.add('playerSprite', [45, 46, 47, 46]);
-//    player.animations.play('playerSprite', 5, true);
-//  },
-//  moveDown: function() {
-//    this.movementDirection = "down";
-//
-//    player.loadTexture('playerSprite');
-//    player.animations.add('playerSprite', [9, 10, 11, 10]);
-//    player.animations.play('playerSprite', 5, true);
-//  },
-//  moveLeft: function() {
-//    this.movementDirection = "left";
-//
-//    player.loadTexture('playerSprite');
-//    player.animations.add('playerSprite', [21, 22, 23, 22]);
-//    player.animations.play('playerSprite', 5, true);
-//  },
-//  moveRight: function() {
-//    this.movementDirection = "right";
-//
-//    player.loadTexture('playerSprite');
-//    player.animations.add('playerSprite', [33, 34, 35, 34]);
-//    player.animations.play('playerSprite', 5, true);
-//  },
-//  playerLaugh: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [33, 34, 35, 34]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerNo: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [21, 22, 23, 22]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerYes: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [9, 10, 11, 10]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
-//  playerShock: function() {
-//    player.loadTexture('emoteSprite');
-//    player.animations.add('emoteSprite', [45, 46, 47, 46]);
-//    player.animations.play('emoteSprite', 8, true);
-//  },
   exitLevel: function() {
     this.game.state.start("Level2", true, false, 3150, player.y, "left");
   },
@@ -348,8 +205,7 @@ level1.prototype = {
   exitRanch: function() {
     this.game.state.start("Level1-Ranch", true, false, 1127, 940, "up");
   }
+  
 }
-
-
 
 console.log("%cLevel1", "color:white; background:red");
