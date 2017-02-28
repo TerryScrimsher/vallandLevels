@@ -62,15 +62,15 @@ level1.prototype = {
     
     npc1 = new NPC(this.game, 1494, 1240, 'Rogue');
 		this.game.add.existing(npc1);
-    npcGroup.add(npc1);
+    playerGroup.add(npc1);
 
     npc2 = new NPC(this.game, 2020,1430, 'Smith');
 		this.game.add.existing(npc2);
-    npcGroup.add(npc2);
+    playerGroup.add(npc2);
     
     baldy = new walkingNPC(this.game,2020,1530, 'Smith');
 		this.game.add.existing(baldy);
-    npcGroup.add(baldy);
+    playerGroup.add(baldy);
     
     //Exit    
     exit = this.game.add.sprite(1, 1344);
@@ -156,9 +156,11 @@ level1.prototype = {
   },
   update: function() {
     
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
-      this.game.world.swap(playerGroup, npcGroup);
-    }
+    playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
+    
+//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
+//      this.game.world.swap(playerGroup, npcGroup);
+//    }
 
     this.game.physics.arcade.collide(playerGroup, npc1);
     this.game.physics.arcade.collide(playerGroup, npc2);
