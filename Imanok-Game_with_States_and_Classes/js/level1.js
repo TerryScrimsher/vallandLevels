@@ -5,6 +5,8 @@ var level1 = function(game) {
   var player;
   var player2;
   var baldy;
+  var npc1;
+  var npc2;
   var movementDirection = null;
 
   var playerX;
@@ -58,17 +60,13 @@ level1.prototype = {
     npcGroup = this.game.add.group();
     playerGroup = this.game.add.group();
     
-    npc1 = this.game.add.sprite(1494, 1240, 'emoteSprite', 1);
-    npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
-    npc1.animations.play('emoteSprite', 8, true);
-    this.game.physics.arcade.enable(npc1);
-    npc1.body.immovable = true;
+    npc1 = new NPC(this.game, 1494, 1240, 'Rogue');
+		this.game.add.existing(npc1);
+    npcGroup.add(npc1);
 
-    npc2 = this.game.add.sprite(2020, 1430, 'emoteSprite', 1);
-    npc2.animations.add('emoteSprite', [66, 67, 68, 67]);
-    npc2.animations.play('emoteSprite', 4, true);
-    this.game.physics.arcade.enable(npc2);
-    npc2.body.immovable = true;
+    npc2 = new NPC(this.game, 2020,1430, 'Smith');
+		this.game.add.existing(npc2);
+    npcGroup.add(npc2);
     
     baldy = new walkingNPC(this.game,2020,1530, 'Smith');
 		this.game.add.existing(baldy);
@@ -130,12 +128,16 @@ level1.prototype = {
     exitRanch.scale.x = 1;
     exitRanch.scale.y = .1;
     
+    //Init player to level
     player2 = new Player(this.game, playerX, playerY, playerDirection);
     
 		this.game.add.existing(player2);
     playerGroup.add(player2);
     this.game.physics.arcade.enable(playerGroup);
     this.game.physics.arcade.enable(npcGroup);
+    
+    
+//    this.game.world.swap(playerGroup, npcGroup);
     
     layer9 = map.createLayer('Overlay');
 
@@ -153,6 +155,10 @@ level1.prototype = {
 
   },
   update: function() {
+    
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
+      this.game.world.swap(playerGroup, npcGroup);
+    }
 
     this.game.physics.arcade.collide(playerGroup, npc1);
     this.game.physics.arcade.collide(playerGroup, npc2);
@@ -178,11 +184,12 @@ level1.prototype = {
   },
 
   render: function() {
-//    this.game.debug.body(baldy);
+//    this.game.debug.body(player2);
+//    this.game.debug.text('Sprite z-depth: ' + player2.z, 10, 20);
   },
 
   exitLevel: function() {
-    this.game.state.start("Level2", true, false, 3150, player.y, "left");
+    this.game.state.start("Level2", true, false, 3150, player2.y, "left");
   },
   exitPotshop: function() {
     this.game.state.start("Level1-Potshop", true, false, 774, 940, "up");
@@ -208,4 +215,4 @@ level1.prototype = {
   
 }
 
-console.log("%cLevel1", "color:white; background:red");
+console.log("%cTown", "color:white; background:red");

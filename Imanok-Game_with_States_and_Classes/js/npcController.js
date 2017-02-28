@@ -23,8 +23,8 @@ function SelectNPC (select) {
     }
 }
 
-function randomNumber (max) {
-  return Math.floor((Math.random() * max) + 1);
+function randomNumber (min, max) {
+  return Math.floor((Math.random() * max) + min);
 }
 
 
@@ -55,8 +55,8 @@ walkingNPC.prototype.update = function() {
     this.body.velocity.y = 0;
     
     if (walkDuration == 0) {
-      walkDuration = 50 + randomNumber(9);
-      direction = randomNumber(3);
+      walkDuration = randomNumber(10, 50);
+      direction = randomNumber(1,4);
       moveTrigger = false;
     }
   

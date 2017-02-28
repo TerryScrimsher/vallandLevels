@@ -25,7 +25,6 @@ Player.prototype.update = function() {
     this.body.velocity.y = 0;
     this.body.velocity.x = 0;
   
-  
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
       if (this.PlayerDirection != "left") {
         moveLeft(this);
@@ -101,8 +100,6 @@ Player.prototype.update = function() {
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
       this.game.state.start("Level1", true, false);
     }
-
-  
 	};	
 
   Player.prototype.render = function() {

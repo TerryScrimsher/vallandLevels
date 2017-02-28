@@ -3,6 +3,8 @@ var level2 = function(game) {
   var map;
   var layer;
   var player;
+  var player2;
+  var baldy;
   var movementDirection = null;
 
   var playerX;
@@ -53,6 +55,9 @@ level2.prototype = {
     layer = map.createLayer('Terrain');
     layer8 = map.createLayer('Collision');
     layer2 = map.createLayer('Underlay');
+    
+    npcGroup = this.game.add.group();
+    playerGroup = this.game.add.group();
 
     //Exit
     exit = this.game.add.sprite(3196, 1344);
@@ -62,8 +67,11 @@ level2.prototype = {
     exit.scale.y = 2;
 
     //Init player to level
-    this.createPlayer(playerX, playerY, playerDirection);
-    player.body.setSize(29, 28, 11, 44);
+    player2 = new Player(this.game, playerX, playerY, playerDirection);
+    
+		this.game.add.existing(player2);
+    playerGroup.add(player2);
+    this.game.physics.arcade.enable(playerGroup);
 
     layer9 = map.createLayer('Overlay');
 
@@ -82,84 +90,9 @@ level2.prototype = {
 
   update: function() {
 
-    this.game.physics.arcade.collide(player, layer8);
+    this.game.physics.arcade.collide(playerGroup, layer8);
 
-    this.game.physics.arcade.collide(player, exit, this.exitLevel, null, this);
-
-    player.body.velocity.y = 0;
-    player.body.velocity.x = 0;
-
-    //    text1.x = Math.floor(player.x + player.width / 2);
-    //    text1.y = Math.floor(player.y + player.height / 2);
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-      if (this.movementDirection != "left") {
-        this.moveLeft();
-      }
-      player.body.velocity.x -= 400;
-
-      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        player.body.velocity.y -= 400;
-      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-        player.body.velocity.y += 400;
-      }
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-      if (this.movementDirection != "right") {
-        this.moveRight();
-      }
-      player.body.velocity.x += 400;
-
-      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        player.body.velocity.y -= 400;
-      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-        player.body.velocity.y += 400;
-      }
-
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-      if (this.movementDirection != "up") {
-        this.moveUp();
-      }
-      player.body.velocity.y -= 400;
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-      if (this.movementDirection != "down") {
-        this.moveDown();
-      }
-      player.body.velocity.y += 400;
-    } else {
-
-      if (this.movementDirection == "up") {
-        this.standStillUp();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "down") {
-        this.standStillDown();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "left") {
-        this.standStillLeft();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "right") {
-        this.standStillRight();
-        this.movementDirection = null;
-      }
-    }
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-      this.playerLaugh();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-      this.playerShock();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
-      this.playerNo();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
-      this.playerYes();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
-      this.game.state.start("Level1", true, false);
-    }
+    this.game.physics.arcade.collide(playerGroup, exit, this.exitLevel, null, this);
 
   },
 
@@ -168,82 +101,10 @@ level2.prototype = {
     //    this.game.debug.body(exit);
   },
 
-  createPlayer: function(playerX, playerY, playerDirection) {
-    player = this.game.add.sprite(52, 74, 'playerSprite', 10);
-    player.x = playerX;
-    player.y = playerY;
-    this.game.physics.arcade.enable(player);
-    this.game.camera.follow(player);
-    player.body.collideWorldBounds = true;
-    player.body.linearDamping = 1;
-
-    this.movementDirection = playerDirection;
-  },
-
-  standStillUp: function() {
-    player.loadTexture('playerSprite', 46);
-  },
-  standStillDown: function() {
-    player.loadTexture('playerSprite', 10);
-  },
-  standStillLeft: function() {
-    player.loadTexture('playerSprite', 22);
-  },
-  standStillRight: function() {
-    player.loadTexture('playerSprite', 34);
-  },
-  moveUp: function() {
-    this.movementDirection = "up";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [45, 46, 47, 46]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveDown: function() {
-    this.movementDirection = "down";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [9, 10, 11, 10]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveLeft: function() {
-    this.movementDirection = "left";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [21, 22, 23, 22]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveRight: function() {
-    this.movementDirection = "right";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [33, 34, 35, 34]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  playerLaugh: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [33, 34, 35, 34]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerNo: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [21, 22, 23, 22]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerYes: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [9, 10, 11, 10]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerShock: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [45, 46, 47, 46]);
-    player.animations.play('emoteSprite', 8, true);
-  },
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 1, player.y, "right");
+    this.game.state.start("Level1", true, false, 1, player2.y, "right");
   }
 
 }
 
-console.log("%cLevel2", "color:white; background:red");
+console.log("%cGraveyard", "color:white; background:red");

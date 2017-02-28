@@ -3,6 +3,8 @@ var level1lodge = function(game) {
   var map;
   var layer;
   var player;
+  var player2;
+  var baldy;
   var movementDirection = null;
 
   var playerX;
@@ -57,6 +59,9 @@ level1lodge.prototype = {
     layer8 = map.createLayer('Collision');
 //    layer2 = map.createLayer('Underlay');
     layer11 = map.createLayer('Objects');
+    
+    npcGroup = this.game.add.group();
+    playerGroup = this.game.add.group();
 
     npc1 = this.game.add.sprite(966, 598, 'emoteSprite', 1);
     npc1.animations.add('emoteSprite', [30, 31, 32, 31]);
@@ -72,8 +77,11 @@ level1lodge.prototype = {
     exitPotshop.scale.y = .1;
 
     //Init player to level
-    this.createPlayer(playerX, playerY, playerDirection);
-    player.body.setSize(29, 28, 11, 44);
+    player2 = new Player(this.game, playerX, playerY, playerDirection);
+    
+		this.game.add.existing(player2);
+    playerGroup.add(player2);
+    this.game.physics.arcade.enable(playerGroup);
 
     layer9 = map.createLayer('Overlay');
 
@@ -92,86 +100,11 @@ level1lodge.prototype = {
   },
   update: function() {
 
-    this.game.physics.arcade.collide(player, npc1);
-    this.game.physics.arcade.collide(player, layer8);
-    this.game.physics.arcade.collide(player, layer11);
+    this.game.physics.arcade.collide(playerGroup, npc1);
+    this.game.physics.arcade.collide(playerGroup, layer8);
+    this.game.physics.arcade.collide(playerGroup, layer11);
 
-    this.game.physics.arcade.collide(player, exitPotshop, this.exitLevel, null, this);
-
-    player.body.velocity.y = 0;
-    player.body.velocity.x = 0;
-
-    //    text1.x = Math.floor(player.x + player.width / 2);
-    //    text1.y = Math.floor(player.y + player.height / 2);
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-      if (this.movementDirection != "left") {
-        this.moveLeft();
-      }
-      player.body.velocity.x -= 400;
-
-      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        player.body.velocity.y -= 400;
-      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-        player.body.velocity.y += 400;
-      }
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-      if (this.movementDirection != "right") {
-        this.moveRight();
-      }
-      player.body.velocity.x += 400;
-
-      if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        player.body.velocity.y -= 400;
-      } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-        player.body.velocity.y += 400;
-      }
-
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-      if (this.movementDirection != "up") {
-        this.moveUp();
-      }
-      player.body.velocity.y -= 400;
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-      if (this.movementDirection != "down") {
-        this.moveDown();
-      }
-      player.body.velocity.y += 400;
-    } else {
-
-      if (this.movementDirection == "up") {
-        this.standStillUp();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "down") {
-        this.standStillDown();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "left") {
-        this.standStillLeft();
-        this.movementDirection = null;
-      }
-      if (this.movementDirection == "right") {
-        this.standStillRight();
-        this.movementDirection = null;
-      }
-    }
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-      this.playerLaugh();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-      this.playerShock();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
-      this.playerNo();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
-      this.playerYes();
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
-      this.game.state.start("Level2", true, false);
-    }
+    this.game.physics.arcade.collide(playerGroup, exitPotshop, this.exitLevel, null, this);
 
   },
 
@@ -180,81 +113,9 @@ level1lodge.prototype = {
 //        this.game.debug.body(exitPotshop);
   },
 
-  createPlayer: function(playerX, playerY, playerDirection) {
-    player = this.game.add.sprite(52, 74, 'playerSprite', 10);
-    player.x = playerX;
-    player.y = playerY;
-    this.game.physics.arcade.enable(player);
-    this.game.camera.follow(player);
-    player.body.collideWorldBounds = true;
-    player.body.linearDamping = 1;
-
-    this.movementDirection = playerDirection;
-  },
-
-  standStillUp: function() {
-    player.loadTexture('playerSprite', 46);
-  },
-  standStillDown: function() {
-    player.loadTexture('playerSprite', 10);
-  },
-  standStillLeft: function() {
-    player.loadTexture('playerSprite', 22);
-  },
-  standStillRight: function() {
-    player.loadTexture('playerSprite', 34);
-  },
-  moveUp: function() {
-    this.movementDirection = "up";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [45, 46, 47, 46]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveDown: function() {
-    this.movementDirection = "down";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [9, 10, 11, 10]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveLeft: function() {
-    this.movementDirection = "left";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [21, 22, 23, 22]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  moveRight: function() {
-    this.movementDirection = "right";
-
-    player.loadTexture('playerSprite');
-    player.animations.add('playerSprite', [33, 34, 35, 34]);
-    player.animations.play('playerSprite', 5, true);
-  },
-  playerLaugh: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [33, 34, 35, 34]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerNo: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [21, 22, 23, 22]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerYes: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [9, 10, 11, 10]);
-    player.animations.play('emoteSprite', 8, true);
-  },
-  playerShock: function() {
-    player.loadTexture('emoteSprite');
-    player.animations.add('emoteSprite', [45, 46, 47, 46]);
-    player.animations.play('emoteSprite', 8, true);
-  },
   exitLevel: function() {
     this.game.state.start("Level1", true, false, 2488, 850, "down");
   }
 }
 
-console.log("%cLevel1 Lodge", "color:white; background:red");
+console.log("%cTown: Lodge", "color:white; background:red");
