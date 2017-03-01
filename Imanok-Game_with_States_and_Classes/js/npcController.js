@@ -65,7 +65,6 @@ walkingNPC.prototype.update = function() {
         //Up
         if (moveTrigger != true) {
           moveNPCUp(this); 
-          console.log('UP');
           moveTrigger = true;
         }
         this.body.velocity.y -= 100;
@@ -75,7 +74,6 @@ walkingNPC.prototype.update = function() {
         //Down
         if (moveTrigger != true) {
           moveNPCDown(this);
-          console.log('DOWN');
           moveTrigger = true;
         }
         this.body.velocity.y += 100;
@@ -85,7 +83,6 @@ walkingNPC.prototype.update = function() {
         //Left
         if (moveTrigger != true) {
           moveNPCLeft(this);
-          console.log('LEFT');
           moveTrigger = true;
         }
         this.body.velocity.x -= 100;
@@ -95,7 +92,6 @@ walkingNPC.prototype.update = function() {
         //Right
         if (moveTrigger != true) {
           moveNPCRight(this);
-          console.log('RIGHT');
           moveTrigger = true;
         }
         this.body.velocity.x += 100;
