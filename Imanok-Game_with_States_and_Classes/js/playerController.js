@@ -1,8 +1,6 @@
-
-
-
 var PlayerDirection = null;
 var obj;
+var testo;
 
 Player = function (game, x, y, playerDirection) {
 		Phaser.Sprite.call(this, game, x, y, "playerSprite", 10);
@@ -25,11 +23,7 @@ Player.prototype.update = function() {
   
     this.body.velocity.y = 0;
     this.body.velocity.x = 0;
-  
-    this.game.input.keyboard.onDownCallback = function() {   
-//      playerControl(this, this.game.input.keyboard.event.keyCode);      
-    };
-  
+
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
       if (this.PlayerDirection != "left") {
         moveLeft(this);
@@ -66,6 +60,16 @@ Player.prototype.update = function() {
           moveDown(this);
       }
       this.body.velocity.y += 400;
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
+        playerLaugh(this);
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+      playerShock(this);
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
+      playerNo(this);
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
+      playerYes(this);
+    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
+      this.game.state.start("Level1", true, false);
     } else {
 
       if (this.PlayerDirection == "up") {
@@ -85,23 +89,7 @@ Player.prototype.update = function() {
         this.PlayerDirection = null;
       }
     }
-  
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-      playerLaugh(this);
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-      playerShock(this);
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.N)) {
-      playerNo(this);
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.Y)) {
-      playerYes(this);
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.T)) {
-      this.game.state.start("Level1", true, false);
-    }
-  
+
 	};	
 
   Player.prototype.render = function() {

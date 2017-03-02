@@ -12,7 +12,6 @@ var level1 = function(game) {
   var playerX;
   var playerY;
 
-  //var text1;
 }
 
 level1.prototype = {
@@ -34,6 +33,8 @@ level1.prototype = {
     }
   },
   create: function() {
+    
+    this.time.advancedTiming = true;
 
     //Init game physics
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -54,8 +55,11 @@ level1.prototype = {
 
     //Builds out level layers
     layer = map.createLayer('Terrain');
+    layer.renderSettings.enableScrollDelta = false;
     layer8 = map.createLayer('Collision');
+    layer8.renderSettings.enableScrollDelta = false;
     layer2 = map.createLayer('Underlay');
+    layer2.renderSettings.enableScrollDelta = false;
 
     npcGroup = this.game.add.group();
     playerGroup = this.game.add.group();
@@ -71,6 +75,7 @@ level1.prototype = {
     baldy = new walkingNPC(this.game,2020,1530, 'Smith');
 		this.game.add.existing(baldy);
     playerGroup.add(baldy);
+    
     
     //Exit    
     exit = this.game.add.sprite(1, 1344);
@@ -188,6 +193,7 @@ level1.prototype = {
   render: function() {
 //    this.game.debug.body(player2);
 //    this.game.debug.text('Sprite z-depth: ' + player2.z, 10, 20);
+    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
   },
 
   exitLevel: function() {
