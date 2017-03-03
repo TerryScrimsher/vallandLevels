@@ -81,10 +81,9 @@ level2.prototype = {
 
     //    var text1 = game.add.bitmapText(((window.innerWidth * window.devicePixelRatio)/2)-4, ((window.innerHeight * window.devicePixelRatio)/2)-20, 'sakredfont', 'Player', 24);
     //    text1.fixedToCamera = true;
-    var text2 = this.game.add.bitmapText(60, 60, 'sakredfont', 'Valland: Graveyard', 52);
+    var text2 = this.game.add.bitmapText(40, 30, 'sakredfont', 'Town: Graveyard', 52);
     text2.fixedToCamera = true;
-    var text3 = this.game.add.bitmapText(90, 160, 'quirkfont', 'W/A/S/D to Move\nL = Laugh\nO = Surprised\nY = Yes\nN = No\nT = Teleport', 30);
-    text3.fixedToCamera = true;
+    this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
 
   },
 
