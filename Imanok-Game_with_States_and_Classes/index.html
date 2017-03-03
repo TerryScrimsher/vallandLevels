@@ -24,11 +24,11 @@
       <script src="js/level1ranch.js"></script>
       <script src="js/level2.js"></script>
         <style>
-    			body{margin:0}
+          canvas {border: 2px solid #c7c7c7;}
     		</style>
       <script>
         (function() {
-          var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, "game");
+          var game = new Phaser.Game(1120, 630, Phaser.CANVAS, "game");
           game.state.add("Boot",boot);
           game.state.add("Preload",preload);
           game.state.add("Level1",level1);
@@ -46,5 +46,10 @@
 
   </head>
   <body>
+    <div class="container">
+      <h1>Imanok: Domain of Valland</h1>
+      <div id="game"></div>
+      <h2>WASD to Move, L = Laugh, O = Surprised, Y = Yes, N = No, T = Teleport</h2>
+    </div>
   </body>
 </html>
