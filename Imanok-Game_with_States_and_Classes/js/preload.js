@@ -6,7 +6,7 @@ var emoteSpritesheet = "img/emote2.png";
 
 preload.prototype = {
 	preload: function(){ 
-          var loadingBar = this.add.sprite(550,540,"loading");
+          var loadingBar = this.add.sprite(466,540,"loading");
           loadingBar.anchor.setTo(0.5,0.5);
           this.load.setPreloadSprite(loadingBar);
       
@@ -43,8 +43,8 @@ preload.prototype = {
 //    this.game.load.bitmapFont('sakredfont', 'fonts/sakredfont2.png', 'fonts/sakredfont2.fnt');
     this.game.load.bitmapFont('quirkfont', 'fonts/quirkfont.png', 'fonts/quirkfont.fnt');
     
-    var loadingTitle = this.game.add.bitmapText(424, 160, 'sakredfont', 'Imanok', 100);
-    var loadingSubTitle = this.game.add.bitmapText(410, 260, 'sakredfont', 'Domain of Valland', 40);
+    var loadingTitle = this.game.add.bitmapText(344, 160, 'sakredfont', 'Imanok', 100);
+    var loadingSubTitle = this.game.add.bitmapText(330, 260, 'sakredfont', 'Domain of Valland', 40);
     
 
 	},

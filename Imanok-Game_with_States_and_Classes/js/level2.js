@@ -101,7 +101,7 @@ level2.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 1, player2.y, "right");
+    this.game.state.start("Level1", true, false, 27, player2.y, "right");
   }
 
 }

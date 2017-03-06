@@ -107,7 +107,7 @@ level1blacksmith.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 2263, 1272, "down");
+    this.game.state.start("Level1", true, false, 2289, 1298, "down");
   }
 
 }

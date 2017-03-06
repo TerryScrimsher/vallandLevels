@@ -107,7 +107,7 @@ level1ranch.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 631, 240, "down");
+    this.game.state.start("Level1", true, false, 657, 266, "down");
   }
 }
 

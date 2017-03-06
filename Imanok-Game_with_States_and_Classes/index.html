@@ -14,6 +14,7 @@
       <script src="js/preload.js"></script>
       <script src="js/playerController.js"></script>
       <script src="js/npcController.js"></script>
+      <script src="js/gateController.js"></script>
       <script src="js/level1.js"></script>
       <script src="js/level1potshop.js"></script>
       <script src="js/level1inn.js"></script>
@@ -28,7 +29,7 @@
     		</style>
       <script>
         (function() {
-          var game = new Phaser.Game(1120, 630, Phaser.CANVAS, "game");
+          var game = new Phaser.Game(960, 720, Phaser.CANVAS, "game"); //16:9 = 1120:630
           game.state.add("Boot",boot);
           game.state.add("Preload",preload);
           game.state.add("Level1",level1);

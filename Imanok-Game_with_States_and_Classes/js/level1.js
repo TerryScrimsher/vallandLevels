@@ -19,12 +19,12 @@ level1.prototype = {
     if (customParam1) {
       playerX = customParam1;
     } else {
-      playerX = 1570;
+      playerX = 1596;
     }
     if (customParam2) {
       playerY = customParam2;
     } else {
-      playerY = 1330;
+      playerY = 1356;
     }
     if (customDirection) {
       playerDirection = customDirection;
@@ -61,7 +61,6 @@ level1.prototype = {
     layer2 = map.createLayer('Underlay');
     layer2.renderSettings.enableScrollDelta = false;
 
-    npcGroup = this.game.add.group();
     playerGroup = this.game.add.group();
     
     npc1 = new NPC(this.game, 1494, 1240, 'Rogue');
@@ -75,7 +74,6 @@ level1.prototype = {
     baldy = new walkingNPC(this.game,2020,1530, 'Smith');
 		this.game.add.existing(baldy);
     playerGroup.add(baldy);
-    
     
     //Exit    
     exit = this.game.add.sprite(1, 1344);
@@ -139,10 +137,6 @@ level1.prototype = {
 		this.game.add.existing(player2);
     playerGroup.add(player2);
     this.game.physics.arcade.enable(playerGroup);
-    this.game.physics.arcade.enable(npcGroup);
-    
-    
-//    this.game.world.swap(playerGroup, npcGroup);
     
     layer9 = map.createLayer('Overlay');
 
@@ -158,26 +152,13 @@ level1.prototype = {
   update: function() {
     
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
-    
-//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
-//      this.game.world.swap(playerGroup, npcGroup);
-//    }
-
-    this.game.physics.arcade.collide(playerGroup, npc1);
-    this.game.physics.arcade.collide(playerGroup, npc2);
+  
     this.game.physics.arcade.collide(playerGroup, layer8);
-    this.game.physics.arcade.collide(playerGroup, npcGroup);
     this.game.physics.arcade.collide(playerGroup, playerGroup);
-    
-    this.game.physics.arcade.collide(npcGroup, npc1);
-    this.game.physics.arcade.collide(npcGroup, npc2);
-    this.game.physics.arcade.collide(npcGroup, layer8);
-    this.game.physics.arcade.collide(npcGroup, playerGroup);
-    this.game.physics.arcade.collide(npcGroup, npcGroup);
     
     this.game.physics.arcade.collide(playerGroup, exit, this.exitLevel, null, this);
     this.game.physics.arcade.collide(playerGroup, exitPotshop, this.exitPotshop, null, this);
-    this.game.physics.arcade.collide(playerGroup, exitInn, this.exitInn, null, this);
+//    this.game.physics.arcade.collide(playerGroup, exitInn, this.exitInn, null, this);
     this.game.physics.arcade.collide(playerGroup, exitBlacksmith, this.exitBlacksmith, null, this);
     this.game.physics.arcade.collide(playerGroup, exitPlayerhouse, this.exitPlayerhouse, null, this);
     this.game.physics.arcade.collide(playerGroup, exitItemshop, this.exitItemshop, null, this);
@@ -193,28 +174,28 @@ level1.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level2", true, false, 3150, player2.y, "left");
+    this.game.state.start("Level2", true, false, 3176, player2.y, "left");
   },
   exitPotshop: function() {
-    this.game.state.start("Level1-Potshop", true, false, 774, 940, "up");
+    this.game.state.start("Level1-Potshop", true, false, 801, 940, "up");
   },
-  exitInn: function() {
-    this.game.state.start("Level1-Inn", true, false, 774, 940, "up");
-  },
+//  exitInn: function() {
+//    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
+//  },
   exitBlacksmith: function() {
-    this.game.state.start("Level1-Blacksmith", true, false, 774, 940, "up");
+    this.game.state.start("Level1-Blacksmith", true, false, 801, 940, "up");
   },
   exitItemshop: function() {
-    this.game.state.start("Level1-Itemshop", true, false, 774, 940, "up");
+    this.game.state.start("Level1-Itemshop", true, false, 801, 940, "up");
   },
   exitPlayerhouse: function() {
-    this.game.state.start("Level1-Playerhouse", true, false, 774, 940, "up");
+    this.game.state.start("Level1-Playerhouse", true, false, 801, 940, "up");
   },
   exitLodge: function() {
-    this.game.state.start("Level1-Lodge", true, false, 774, 940, "up");
+    this.game.state.start("Level1-Lodge", true, false, 801, 940, "up");
   },
   exitRanch: function() {
-    this.game.state.start("Level1-Ranch", true, false, 1127, 940, "up");
+    this.game.state.start("Level1-Ranch", true, false, 1154, 940, "up");
   }
   
 }

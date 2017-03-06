@@ -114,7 +114,7 @@ level1inn.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 1367, 1272, "down");
+    this.game.state.start("Level1", true, false, 1393, 1298, "down");
   }
 
 }

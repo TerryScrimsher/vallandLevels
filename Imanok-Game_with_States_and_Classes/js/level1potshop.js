@@ -113,7 +113,7 @@ level1potshop.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 1752, 1620, "down");
+    this.game.state.start("Level1", true, false, 1778, 1646, "down");
   }
 
 }

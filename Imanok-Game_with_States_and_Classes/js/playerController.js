@@ -8,10 +8,10 @@ Player = function (game, x, y, playerDirection) {
     this.y = y;
     this.game.physics.arcade.enable(this);
     this.body.setSize(29, 28, 11, 44);
-    this.game.camera.follow(this);
+    this.game.camera.follow(this, Phaser.Camera.FOLLOW_LOCKON);
     this.body.collideWorldBounds = true;
     this.body.linearDamping = 1;
-  
+    this.anchor.setTo(.5, .5);
     this.PlayerDirection = playerDirection;
   
 };

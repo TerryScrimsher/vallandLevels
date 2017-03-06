@@ -110,7 +110,7 @@ level1playerhouse.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 2422, 1620, "down");
+    this.game.state.start("Level1", true, false, 2448, 1646, "down");
   }
 
 }

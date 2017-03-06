@@ -113,7 +113,7 @@ level1lodge.prototype = {
   },
 
   exitLevel: function() {
-    this.game.state.start("Level1", true, false, 2488, 850, "down");
+    this.game.state.start("Level1", true, false, 2514, 876, "down");
   }
 }
 
