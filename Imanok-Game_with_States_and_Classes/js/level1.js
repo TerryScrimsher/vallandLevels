@@ -96,6 +96,8 @@ level1.prototype = {
     exitInn.scale.x = 1;
     exitInn.scale.y = .1;
     
+//    exitInn = new Gate(this.game, 1376, 1290);
+    
     //Exit: Blacksmith    
     exitBlacksmith = this.game.add.sprite(2272, 1290);
     this.game.physics.arcade.enable(exitBlacksmith);
@@ -158,7 +160,7 @@ level1.prototype = {
     
     this.game.physics.arcade.collide(playerGroup, exit, this.exitLevel, null, this);
     this.game.physics.arcade.collide(playerGroup, exitPotshop, this.exitPotshop, null, this);
-//    this.game.physics.arcade.collide(playerGroup, exitInn, this.exitInn, null, this);
+    this.game.physics.arcade.collide(playerGroup, exitInn, this.exitInn, null, this);
     this.game.physics.arcade.collide(playerGroup, exitBlacksmith, this.exitBlacksmith, null, this);
     this.game.physics.arcade.collide(playerGroup, exitPlayerhouse, this.exitPlayerhouse, null, this);
     this.game.physics.arcade.collide(playerGroup, exitItemshop, this.exitItemshop, null, this);
@@ -168,7 +170,7 @@ level1.prototype = {
   },
 
   render: function() {
-//    this.game.debug.body(player2);
+    this.game.debug.body(exitInn);
 //    this.game.debug.text('Sprite z-depth: ' + player2.z, 10, 20);
     this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
   },
@@ -179,9 +181,9 @@ level1.prototype = {
   exitPotshop: function() {
     this.game.state.start("Level1-Potshop", true, false, 801, 940, "up");
   },
-//  exitInn: function() {
-//    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
-//  },
+  exitInn: function() {
+    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
+  },
   exitBlacksmith: function() {
     this.game.state.start("Level1-Blacksmith", true, false, 801, 940, "up");
   },
