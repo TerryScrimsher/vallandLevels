@@ -7,6 +7,8 @@ var level1 = function(game) {
   var baldy;
   var npc1;
   var npc2;
+  
+  var exitInn;
   var movementDirection = null;
 
   var playerX;
@@ -62,76 +64,32 @@ level1.prototype = {
     layer2.renderSettings.enableScrollDelta = false;
 
     playerGroup = this.game.add.group();
+    gateGroup = this.game.add.group();
     
     npc1 = new NPC(this.game, 1494, 1240, 'Rogue');
 		this.game.add.existing(npc1);
     playerGroup.add(npc1);
 
-    npc2 = new NPC(this.game, 2020,1430, 'Smith');
+    npc2 = new NPC(this.game, 2020, 1430, 'Smith');
 		this.game.add.existing(npc2);
     playerGroup.add(npc2);
     
-    baldy = new walkingNPC(this.game,2020,1530, 'Smith');
+    baldy = new walkingNPC(this.game, 2020, 1530, 'Smith');
 		this.game.add.existing(baldy);
     playerGroup.add(baldy);
     
-    //Exit    
-    exit = this.game.add.sprite(1, 1344);
-    this.game.physics.arcade.enable(exit);
-    exit.body.immovable = true;
-    exit.scale.x = .1;
-    exit.scale.y = 2;
+    //Gates 
+    exit = new Gate(this.game, 1, 1344, 3.2, 64);
+    exitPotshop = new Gate(this.game, 1760, 1640, 32, 3.2);
+    exitInn = new Gate(this.game, 1376, 1290, 32, 3.2);
+    exitBlacksmith = new Gate(this.game, 2272, 1290, 32, 3.2);
+    exitItemshop = new Gate(this.game, 2036, 1290, 32, 3.2);
+    exitPlayerhouse = new Gate(this.game, 2432, 1640, 32, 3.2);
+    exitLodge = new Gate(this.game, 2496, 868, 32, 3.2);
+    exitRanch = new Gate(this.game, 640, 262, 32, 3.2);
     
-    //Exit: Potionshop    
-    exitPotshop = this.game.add.sprite(1760, 1640);
-    this.game.physics.arcade.enable(exitPotshop);
-    exitPotshop.body.immovable = true;
-    exitPotshop.scale.x = 1;
-    exitPotshop.scale.y = .1;
-    
-    //Exit: Inn    
-    exitInn = this.game.add.sprite(1376, 1290);
-    this.game.physics.arcade.enable(exitInn);
-    exitInn.body.immovable = true;
-    exitInn.scale.x = 1;
-    exitInn.scale.y = .1;
-    
-//    exitInn = new Gate(this.game, 1376, 1290);
-    
-    //Exit: Blacksmith    
-    exitBlacksmith = this.game.add.sprite(2272, 1290);
-    this.game.physics.arcade.enable(exitBlacksmith);
-    exitBlacksmith.body.immovable = true;
-    exitBlacksmith.scale.x = 1;
-    exitBlacksmith.scale.y = .1;
-    
-    //Exit: Itemshop   
-    exitItemshop = this.game.add.sprite(2016, 1290);
-    this.game.physics.arcade.enable(exitItemshop);
-    exitItemshop.body.immovable = true;
-    exitItemshop.scale.x = 1;
-    exitItemshop.scale.y = .1;
-    
-    //Exit: Playerhouse    
-    exitPlayerhouse = this.game.add.sprite(2432, 1640);
-    this.game.physics.arcade.enable(exitPlayerhouse);
-    exitPlayerhouse.body.immovable = true;
-    exitPlayerhouse.scale.x = 1;
-    exitPlayerhouse.scale.y = .1;
-    
-    //Exit: Lodge   
-    exitLodge = this.game.add.sprite(2496, 868);
-    this.game.physics.arcade.enable(exitLodge);
-    exitLodge.body.immovable = true;
-    exitLodge.scale.x = 1;
-    exitLodge.scale.y = .1;
-    
-    //Exit: Ranch  
-    exitRanch = this.game.add.sprite(640, 262);
-    this.game.physics.arcade.enable(exitRanch);
-    exitRanch.body.immovable = true;
-    exitRanch.scale.x = 1;
-    exitRanch.scale.y = .1;
+    gateGroup.add(exitInn);
+    this.game.physics.arcade.enable(gateGroup);
     
     //Init player to level
     player2 = new Player(this.game, playerX, playerY, playerDirection);
@@ -170,6 +128,7 @@ level1.prototype = {
   },
 
   render: function() {
+    this.game.debug.body(player2);
     this.game.debug.body(exitInn);
 //    this.game.debug.text('Sprite z-depth: ' + player2.z, 10, 20);
     this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);

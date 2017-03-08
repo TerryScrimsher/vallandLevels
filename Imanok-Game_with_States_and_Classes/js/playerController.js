@@ -1,6 +1,5 @@
 var PlayerDirection = null;
-var obj;
-var testo;
+//var obj;
 
 Player = function (game, x, y, playerDirection) {
 		Phaser.Sprite.call(this, game, x, y, "playerSprite", 10);
