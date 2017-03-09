@@ -2,6 +2,7 @@ var preload = function(game){}
 
 //Asset Variables
 var playerCharacterSpritesheet = "img/chara2.png";
+var animalCharacterSpritesheet = "img/animals2.png";
 var emoteSpritesheet = "img/emote2.png";
 
 preload.prototype = {
@@ -23,9 +24,10 @@ preload.prototype = {
     
     //Load player spritesheet
     this.game.load.spritesheet('playerSprite', playerCharacterSpritesheet, 52, 74, 70);
-    
     //Load emote spritesheet
     this.game.load.spritesheet('emoteSprite', emoteSpritesheet, 52, 72, 70);
+    //Load animal spritesheet
+    this.game.load.spritesheet('animalSprite', animalCharacterSpritesheet, 84, 74, 100);
     
     //Loads level tilesets
     this.game.load.image('tiles', 'img/a_terrain.png');
