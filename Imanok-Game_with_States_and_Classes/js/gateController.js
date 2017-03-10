@@ -3,7 +3,6 @@ Gate = function (game, x, y, scaleX, scaleY) {
 
     this.game.physics.arcade.enable(this);
     this.body.setSize(scaleX, scaleY, 0, 0);
-//    this.body.setSize(29, 28, 11, 44);
 };
 
 Gate.prototype = Object.create(Phaser.Sprite.prototype);
@@ -12,3 +11,10 @@ Gate.prototype.constructor = Gate;
 Gate.prototype.render = function() {
 //  this.game.debug.body(Gate);
 };
+
+
+function exitPoint(obj, level, x, y, direction) {
+  obj.state.start(level, true, false, x, y, direction);
+}
+
+//exitPoint("Level1-Ranch", 1154, 940, "up");

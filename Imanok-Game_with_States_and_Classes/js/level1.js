@@ -117,50 +117,49 @@ level1.prototype = {
     this.game.physics.arcade.collide(playerGroup, collisionlayer);
     this.game.physics.arcade.collide(playerGroup, playerGroup);
     
-    this.game.physics.arcade.collide(player1, exitWest, this.exitWest, null, this);
-    this.game.physics.arcade.collide(player1, exitPotshop, this.exitPotshop, null, this);
-    this.game.physics.arcade.collide(player1, exitInn, this.exitInn, null, this);
-    this.game.physics.arcade.collide(player1, exitBlacksmith, this.exitBlacksmith, null, this);
-    this.game.physics.arcade.collide(player1, exitPlayerhouse, this.exitPlayerhouse, null, this);
-    this.game.physics.arcade.collide(player1, exitItemshop, this.exitItemshop, null, this);
-    this.game.physics.arcade.collide(player1, exitLodge, this.exitLodge, null, this);
-    this.game.physics.arcade.collide(player1, exitRanch, this.exitRanch, null, this);
+    this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left")}, null, this);
+    this.game.physics.arcade.collide(player1, exitPotshop, function(){exitPoint(this.game, "Level1-Potshop", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitInn, function(){exitPoint(this.game, "Level1-Inn", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitBlacksmith, function(){exitPoint(this.game, "Level1-Blacksmith", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitPlayerhouse, function(){exitPoint(this.game, "Level1-Playerhouse", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitItemshop, function(){exitPoint(this.game, "Level1-Itemshop", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitLodge, function(){exitPoint(this.game, "Level1-Lodge", 801, 940, "up")}, null, this);
+    this.game.physics.arcade.collide(player1, exitRanch, function(){exitPoint(this.game, "Level1-Ranch", 1154, 940, "up")}, null, this);
 
   },
-
   render: function() {
-//    this.game.debug.body(player1);
-//    this.game.debug.body(fox1);
+    this.game.debug.body(exitInn);
+    this.game.debug.body(player1);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
   },
   
   //Gateway Functions
-  exitWest: function() {
-    this.game.state.start("Level2", true, false, 3176, player1.y, "left");
-  },
-  exitPotshop: function() {
-    this.game.state.start("Level1-Potshop", true, false, 801, 940, "up");
-  },
-  exitInn: function() {
-    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
-  },
-  exitBlacksmith: function() {
-    this.game.state.start("Level1-Blacksmith", true, false, 801, 940, "up");
-  },
-  exitItemshop: function() {
-    this.game.state.start("Level1-Itemshop", true, false, 801, 940, "up");
-  },
-  exitPlayerhouse: function() {
-    this.game.state.start("Level1-Playerhouse", true, false, 801, 940, "up");
-  },
-  exitLodge: function() {
-    this.game.state.start("Level1-Lodge", true, false, 801, 940, "up");
-  },
-  exitRanch: function() {
-    this.game.state.start("Level1-Ranch", true, false, 1154, 940, "up");
-  }
+//  exitWest: function() {
+//    this.game.state.start("Level2", true, false, 3176, player1.y, "left");
+//  },
+//  exitPotshop: function() {
+//    this.game.state.start("Level1-Potshop", true, false, 801, 940, "up");
+//  },
+//  exitInn: function() {
+//    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
+////  },
+//  exitBlacksmith: function() {
+//    this.game.state.start("Level1-Blacksmith", true, false, 801, 940, "up");
+////  },
+//  exitItemshop: function() {
+//    this.game.state.start("Level1-Itemshop", true, false, 801, 940, "up");
+//  },
+//  exitPlayerhouse: function() {
+//    this.game.state.start("Level1-Playerhouse", true, false, 801, 940, "up");
+//  },
+//  exitLodge: function() {
+//    this.game.state.start("Level1-Lodge", true, false, 801, 940, "up");
+//  },
+//  exitRanch: function() {
+//    this.game.state.start("Level1-Ranch", true, false, 1154, 940, "up");
+//  }
   
 }
 
