@@ -111,6 +111,12 @@ level1.prototype = {
   },
   update: function() {
     
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.F)) {
+      fox = new walkingAnimal(this.game, player1.x, player1.y, 'fox');
+		  this.game.add.existing(fox);
+      playerGroup.add(fox);
+    }
+
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
   
     this.game.physics.arcade.collide(playerGroup, collisionlayer);
@@ -127,8 +133,8 @@ level1.prototype = {
 
   },
   render: function() {
-//    this.game.debug.body(exitInn);
-//    this.game.debug.body(player1);
+    this.game.debug.body(fox1);
+    this.game.debug.body(bunny1);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);

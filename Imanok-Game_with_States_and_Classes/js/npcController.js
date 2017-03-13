@@ -137,7 +137,7 @@ function walkingAnimal (game, x, y, select) {
     Phaser.Sprite.call(this, game, x, y, "animalSprite");
 //		game.physics.enable(this, Phaser.Physics.ARCADE);	
     this.game.physics.arcade.enable(this);
-    this.body.setSize(60, 24, 12, 30);
+//    this.body.setSize(60, 24, 12, 44);
     this.animations.add('animalSprite', SelectAnimal(select));
     this.animations.play('animalSprite', 6, true);
     this.body.immovable = true;
@@ -228,17 +228,22 @@ function moveAnimalUp (obj, select) {
   obj.loadTexture('animalSprite');
   if (select == "fox") {
     obj.animations.add('animalSprite', [93, 94, 95, 94]);
+    obj.body.setSize(24, 44, 28, 22);
   } else {
     obj.animations.add('animalSprite', [42, 43, 44, 43]);
+    obj.body.setSize(20, 24, 12, 44);
   }
   obj.animations.play('animalSprite', 5, true);
+  
 }
 function moveAnimalDown (obj, select) {
   obj.loadTexture('animalSprite');
   if (select == "fox") {
     obj.animations.add('animalSprite', [57, 58, 59, 58]);
+    obj.body.setSize(24, 44, 28, 22);
   } else {
     obj.animations.add('animalSprite', [6, 7, 8, 7]);
+    obj.body.setSize(20, 24, 12, 44);
   }
   obj.animations.play('animalSprite', 5, true);
 }
@@ -246,8 +251,10 @@ function moveAnimalLeft(obj, select) {
   obj.loadTexture('animalSprite');
   if (select == "fox") {
     obj.animations.add('animalSprite', [69, 70, 71, 70]);
+    obj.body.setSize(60, 24, 12, 38);
   } else {
     obj.animations.add('animalSprite', [18, 19, 20, 19]);
+    obj.body.setSize(60, 24, 12, 44);
   }
   obj.animations.play('animalSprite', 5, true);
 }
@@ -255,8 +262,10 @@ function moveAnimalRight (obj, select) {
   obj.loadTexture('animalSprite');
   if (select == "fox") {
     obj.animations.add('animalSprite', [81, 82, 83, 82]);
+    obj.body.setSize(60, 24, 12, 38);
   } else {
     obj.animations.add('animalSprite', [30, 31, 32, 31]);
+    obj.body.setSize(60, 24, 12, 44);
   }
   obj.animations.play('animalSprite', 5, true);
 }
