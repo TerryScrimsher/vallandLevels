@@ -45,9 +45,9 @@ function walkingNPC (game, x, y, select) {
 walkingNPC.prototype = Object.create(Phaser.Sprite.prototype);
 walkingNPC.prototype.constructor = walkingNPC;
 	
-var walkDuration = 0;
-var direction = 2;
-var moveTrigger = false;
+//var walkDuration = 0;
+//var direction = 2;
+//var moveTrigger = false;
 
 walkingNPC.prototype.update = function() {
   
@@ -144,6 +144,67 @@ function walkingAnimal (game, x, y, select) {
     this.body.collideWorldBounds = true;
     this.body.linearDamping = 1;
   
+    var walkDuration = 0;
+    var direction = 2;
+    var moveTrigger = false;
+  
+    this.updateMovement = function() {
+
+      this.body.velocity.x = 0;
+      this.body.velocity.y = 0;
+
+      if (walkDuration == 0) {
+        walkDuration = randomNumber(10, 50);
+        direction = randomNumber(1,4);
+        moveTrigger = false;
+      }
+
+      if (walkDuration > 0) {
+        if (direction == 1) {
+          //Up
+          if (moveTrigger != true) {
+            moveAnimalUp(this, select); 
+            moveTrigger = true;
+          }
+          this.body.velocity.y -= 100;
+          this.body.velocity.x = 0;
+          walkDuration--;
+        } else if (direction == 2) {
+          //Down
+          if (moveTrigger != true) {
+            moveAnimalDown(this, select);
+            moveTrigger = true;
+          }
+          this.body.velocity.y += 100;
+          this.body.velocity.x = 0;
+          walkDuration--;
+        } else if (direction == 3) {
+          //Left
+          if (moveTrigger != true) {
+            moveAnimalLeft(this, select);
+            moveTrigger = true;
+          }
+          this.body.velocity.x -= 100;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } else if (direction == 4) {
+          //Right
+          if (moveTrigger != true) {
+            moveAnimalRight(this, select);
+            moveTrigger = true;
+          }
+          this.body.velocity.x += 100;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } else if (direction > 4) {
+          //None
+          this.body.velocity.x = 0;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } 
+      }
+    }
+//    this.updateMovement(this);
 }
 
 walkingAnimal.prototype = Object.create(Phaser.Sprite.prototype);
@@ -157,87 +218,46 @@ function SelectAnimal (select) {
       return [57, 67, 68, 67];
     }
 }
-	
-//var walkDuration = 0;
-//var direction = 2;
-//var moveTrigger = false;
 
 walkingAnimal.prototype.update = function() {
-  
-    this.body.velocity.x = 0;
-    this.body.velocity.y = 0;
-    
-    if (walkDuration == 0) {
-      walkDuration = randomNumber(10, 50);
-      direction = randomNumber(1,4);
-      moveTrigger = false;
-    }
-  
-    if (walkDuration > 0) {
-      if (direction == 1) {
-        //Up
-        if (moveTrigger != true) {
-          moveAnimalUp(this); 
-          moveTrigger = true;
-        }
-        this.body.velocity.y -= 100;
-        this.body.velocity.x = 0;
-        walkDuration--;
-      } else if (direction == 2) {
-        //Down
-        if (moveTrigger != true) {
-          moveAnimalDown(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.y += 100;
-        this.body.velocity.x = 0;
-        walkDuration--;
-      } else if (direction == 3) {
-        //Left
-        if (moveTrigger != true) {
-          moveAnimalLeft(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.x -= 100;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } else if (direction == 4) {
-        //Right
-        if (moveTrigger != true) {
-          moveAnimalRight(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.x += 100;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } else if (direction > 4) {
-        //None
-        this.body.velocity.x = 0;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } 
-    }
 
+      this.updateMovement();
 };	
 
-function moveAnimalUp (obj) {
+function moveAnimalUp (obj, select) {
   obj.loadTexture('animalSprite');
-  obj.animations.add('animalSprite', [93, 94, 95, 94]);
+  if (select == "fox") {
+    obj.animations.add('animalSprite', [93, 94, 95, 94]);
+  } else {
+    obj.animations.add('animalSprite', [42, 43, 44, 43]);
+  }
   obj.animations.play('animalSprite', 5, true);
 }
-function moveAnimalDown (obj) {
+function moveAnimalDown (obj, select) {
   obj.loadTexture('animalSprite');
-  obj.animations.add('animalSprite', [57, 58, 59, 58]);
+  if (select == "fox") {
+    obj.animations.add('animalSprite', [57, 58, 59, 58]);
+  } else {
+    obj.animations.add('animalSprite', [6, 7, 8, 7]);
+  }
   obj.animations.play('animalSprite', 5, true);
 }
-function moveAnimalLeft(obj) {
+function moveAnimalLeft(obj, select) {
   obj.loadTexture('animalSprite');
-  obj.animations.add('animalSprite', [69, 70, 71, 70]);
+  if (select == "fox") {
+    obj.animations.add('animalSprite', [69, 70, 71, 70]);
+  } else {
+    obj.animations.add('animalSprite', [18, 19, 20, 19]);
+  }
   obj.animations.play('animalSprite', 5, true);
 }
-function moveAnimalRight (obj) {
+function moveAnimalRight (obj, select) {
   obj.loadTexture('animalSprite');
-  obj.animations.add('animalSprite', [81, 82, 83, 82]);
+  if (select == "fox") {
+    obj.animations.add('animalSprite', [81, 82, 83, 82]);
+  } else {
+    obj.animations.add('animalSprite', [30, 31, 32, 31]);
+  }
   obj.animations.play('animalSprite', 5, true);
 }
 

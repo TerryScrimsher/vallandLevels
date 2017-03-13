@@ -14,7 +14,6 @@ var level1 = function(game) {
 }
 
 level1.prototype = {
-  
   init: function(customParam1, customParam2, customDirection) {
     if (customParam1) {
       playerX = customParam1;
@@ -77,9 +76,9 @@ level1.prototype = {
 		this.game.add.existing(fox1);
     playerGroup.add(fox1);
     
-//    bunny1 = new walkingAnimal(this.game, 1620, 1300, 'bunny');
-//		this.game.add.existing(bunny1);
-//    playerGroup.add(bunny1);
+    bunny1 = new walkingAnimal(this.game, 1000, 1480, 'bunny');
+		this.game.add.existing(bunny1);
+    playerGroup.add(bunny1);
     
     //Init player to level
     player1 = new Player(this.game, playerX, playerY, playerDirection);
@@ -128,39 +127,12 @@ level1.prototype = {
 
   },
   render: function() {
-    this.game.debug.body(exitInn);
-    this.game.debug.body(player1);
+//    this.game.debug.body(exitInn);
+//    this.game.debug.body(player1);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
   },
-  
-  //Gateway Functions
-//  exitWest: function() {
-//    this.game.state.start("Level2", true, false, 3176, player1.y, "left");
-//  },
-//  exitPotshop: function() {
-//    this.game.state.start("Level1-Potshop", true, false, 801, 940, "up");
-//  },
-//  exitInn: function() {
-//    this.game.state.start("Level1-Inn", true, false, 801, 940, "up");
-////  },
-//  exitBlacksmith: function() {
-//    this.game.state.start("Level1-Blacksmith", true, false, 801, 940, "up");
-////  },
-//  exitItemshop: function() {
-//    this.game.state.start("Level1-Itemshop", true, false, 801, 940, "up");
-//  },
-//  exitPlayerhouse: function() {
-//    this.game.state.start("Level1-Playerhouse", true, false, 801, 940, "up");
-//  },
-//  exitLodge: function() {
-//    this.game.state.start("Level1-Lodge", true, false, 801, 940, "up");
-//  },
-//  exitRanch: function() {
-//    this.game.state.start("Level1-Ranch", true, false, 1154, 940, "up");
-//  }
-  
 }
 
 //Load Successful!
