@@ -40,6 +40,66 @@ function walkingNPC (game, x, y, select) {
     this.body.collideWorldBounds = true;
     this.body.linearDamping = 1;
   
+    var walkDuration = 0;
+    var direction = 2;
+    var moveTrigger = false;
+  
+    this.updateMovement = function() {
+
+      this.body.velocity.x = 0;
+      this.body.velocity.y = 0;
+    
+      if (walkDuration == 0) {
+        walkDuration = randomNumber(10, 50);
+        direction = randomNumber(1,4);
+        moveTrigger = false;
+      }
+
+      if (walkDuration > 0) {
+        if (direction == 1) {
+          //Up
+          if (moveTrigger != true) {
+            moveNPCUp(this); 
+            moveTrigger = true;
+          }
+          this.body.velocity.y -= 100;
+          this.body.velocity.x = 0;
+          walkDuration--;
+        } else if (direction == 2) {
+          //Down
+          if (moveTrigger != true) {
+            moveNPCDown(this);
+            moveTrigger = true;
+          }
+          this.body.velocity.y += 100;
+          this.body.velocity.x = 0;
+          walkDuration--;
+        } else if (direction == 3) {
+          //Left
+          if (moveTrigger != true) {
+            moveNPCLeft(this);
+            moveTrigger = true;
+          }
+          this.body.velocity.x -= 100;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } else if (direction == 4) {
+          //Right
+          if (moveTrigger != true) {
+            moveNPCRight(this);
+            moveTrigger = true;
+          }
+          this.body.velocity.x += 100;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } else if (direction > 4) {
+          //None
+          this.body.velocity.x = 0;
+          this.body.velocity.y = 0;
+          walkDuration--;
+        } 
+      }
+    }
 }
 
 walkingNPC.prototype = Object.create(Phaser.Sprite.prototype);
@@ -51,60 +111,8 @@ walkingNPC.prototype.constructor = walkingNPC;
 
 walkingNPC.prototype.update = function() {
   
-    this.body.velocity.x = 0;
-    this.body.velocity.y = 0;
-    
-    if (walkDuration == 0) {
-      walkDuration = randomNumber(10, 50);
-      direction = randomNumber(1,4);
-      moveTrigger = false;
-    }
+      this.updateMovement();
   
-    if (walkDuration > 0) {
-      if (direction == 1) {
-        //Up
-        if (moveTrigger != true) {
-          moveNPCUp(this); 
-          moveTrigger = true;
-        }
-        this.body.velocity.y -= 100;
-        this.body.velocity.x = 0;
-        walkDuration--;
-      } else if (direction == 2) {
-        //Down
-        if (moveTrigger != true) {
-          moveNPCDown(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.y += 100;
-        this.body.velocity.x = 0;
-        walkDuration--;
-      } else if (direction == 3) {
-        //Left
-        if (moveTrigger != true) {
-          moveNPCLeft(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.x -= 100;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } else if (direction == 4) {
-        //Right
-        if (moveTrigger != true) {
-          moveNPCRight(this);
-          moveTrigger = true;
-        }
-        this.body.velocity.x += 100;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } else if (direction > 4) {
-        //None
-        this.body.velocity.x = 0;
-        this.body.velocity.y = 0;
-        walkDuration--;
-      } 
-    }
-
 };	
 
 function moveNPCUp (obj) {
@@ -204,7 +212,6 @@ function walkingAnimal (game, x, y, select) {
         } 
       }
     }
-//    this.updateMovement(this);
 }
 
 walkingAnimal.prototype = Object.create(Phaser.Sprite.prototype);
@@ -228,10 +235,10 @@ function moveAnimalUp (obj, select) {
   obj.loadTexture('animalSprite');
   if (select == "fox") {
     obj.animations.add('animalSprite', [93, 94, 95, 94]);
-    obj.body.setSize(24, 44, 28, 22);
+    obj.body.setSize(24, 36, 28, 22);
   } else {
     obj.animations.add('animalSprite', [42, 43, 44, 43]);
-    obj.body.setSize(20, 24, 12, 44);
+    obj.body.setSize(24, 32, 30, 38);
   }
   obj.animations.play('animalSprite', 5, true);
   
@@ -243,7 +250,7 @@ function moveAnimalDown (obj, select) {
     obj.body.setSize(24, 44, 28, 22);
   } else {
     obj.animations.add('animalSprite', [6, 7, 8, 7]);
-    obj.body.setSize(20, 24, 12, 44);
+    obj.body.setSize(24, 32, 30, 40);
   }
   obj.animations.play('animalSprite', 5, true);
 }
@@ -254,7 +261,7 @@ function moveAnimalLeft(obj, select) {
     obj.body.setSize(60, 24, 12, 38);
   } else {
     obj.animations.add('animalSprite', [18, 19, 20, 19]);
-    obj.body.setSize(60, 24, 12, 44);
+    obj.body.setSize(40, 26, 28, 44);
   }
   obj.animations.play('animalSprite', 5, true);
 }
@@ -265,7 +272,7 @@ function moveAnimalRight (obj, select) {
     obj.body.setSize(60, 24, 12, 38);
   } else {
     obj.animations.add('animalSprite', [30, 31, 32, 31]);
-    obj.body.setSize(60, 24, 12, 44);
+    obj.body.setSize(40, 24, 28, 44);
   }
   obj.animations.play('animalSprite', 5, true);
 }

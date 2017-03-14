@@ -68,17 +68,33 @@ level1.prototype = {
 		this.game.add.existing(npc2);
     playerGroup.add(npc2);
     
-//    baldy = new walkingNPC(this.game, 2020, 1530, 'Smith');
-//		this.game.add.existing(baldy);
-//    playerGroup.add(baldy);
+    dude = new walkingNPC(this.game, 2020, 1530, 'Smith');
+		this.game.add.existing(dude);
+    playerGroup.add(dude);
+    
+    buddy = new walkingNPC(this.game, 1620, 1030, 'Smith');
+		this.game.add.existing(buddy);
+    playerGroup.add(buddy);
+    
+    pal = new walkingNPC(this.game, 820, 800, 'Smith');
+		this.game.add.existing(pal);
+    playerGroup.add(pal);
     
     fox1 = new walkingAnimal(this.game, 1020, 1530, 'fox');
 		this.game.add.existing(fox1);
     playerGroup.add(fox1);
     
+    fox2 = new walkingAnimal(this.game, 820, 700, 'fox');
+		this.game.add.existing(fox2);
+    playerGroup.add(fox2);
+    
     bunny1 = new walkingAnimal(this.game, 1000, 1480, 'bunny');
 		this.game.add.existing(bunny1);
     playerGroup.add(bunny1);
+    
+    bunny2 = new walkingAnimal(this.game, 920, 300, 'bunny');
+		this.game.add.existing(bunny2);
+    playerGroup.add(bunny2);
     
     //Init player to level
     player1 = new Player(this.game, playerX, playerY, playerDirection);
@@ -133,8 +149,8 @@ level1.prototype = {
 
   },
   render: function() {
-    this.game.debug.body(fox1);
-    this.game.debug.body(bunny1);
+//    this.game.debug.body(fox1);
+//    this.game.debug.body(bunny1);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
