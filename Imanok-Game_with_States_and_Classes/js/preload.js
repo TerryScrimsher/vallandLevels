@@ -29,6 +29,8 @@ preload.prototype = {
     //Load animal spritesheet
     this.game.load.spritesheet('animalSprite', animalCharacterSpritesheet, 84, 74, 100);
     
+    this.game.load.image('ball', 'img/blue_ball.png');
+    
     //Loads level tilesets
     this.game.load.image('tiles', 'img/a_terrain.png');
     this.game.load.image('tiles2', 'img/outside.png');

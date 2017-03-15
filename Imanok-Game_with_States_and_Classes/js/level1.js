@@ -103,6 +103,22 @@ level1.prototype = {
     playerGroup.add(player1);
     this.game.physics.arcade.enable(playerGroup);
     
+    //Basic Orbitals
+    orb = this.game.add.sprite(playerX, playerY, 'ball');
+    orb.anchor.setTo(0.5);
+    orb.pivot.y = -20;
+    orb.pivot.x = 42;
+    
+    orb2 = this.game.add.sprite(playerX, playerY, 'ball');
+    orb2.anchor.setTo(0.5);
+    orb2.pivot.y = 49;
+    orb2.pivot.x = 0;
+    
+    orb3 = this.game.add.sprite(playerX, playerY, 'ball');
+    orb3.anchor.setTo(0.5);
+    orb3.pivot.y = -20;
+    orb3.pivot.x = -42;
+    
     //Create Gates 
     exitWest = new Gate(this.game, 1, 1344, 3.2, 64);
     exitPotshop = new Gate(this.game, 1760, 1640, 32, 3.2);
@@ -126,6 +142,19 @@ level1.prototype = {
 
   },
   update: function() {
+    
+    //Basic Orbitals, follow player
+    orb.x = player1.x; 
+    orb.y = player1.y;
+    orb.rotation += 0.05;
+    
+    orb2.x = player1.x; 
+    orb2.y = player1.y;
+    orb2.rotation += 0.05;
+    
+    orb3.x = player1.x; 
+    orb3.y = player1.y;
+    orb3.rotation += 0.05;
     
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.F)) {
       fox = new walkingAnimal(this.game, player1.x, player1.y, 'fox');
