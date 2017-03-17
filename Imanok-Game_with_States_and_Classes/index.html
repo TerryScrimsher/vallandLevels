@@ -28,6 +28,16 @@
         <style>
           canvas {border: 2px solid #c7c7c7;}
     		</style>
+    
+      <script>
+        window.addEventListener("keydown", function(e) {
+            // space and arrow keys
+            if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+      </script>  
+    
       <script>
         (function() {
           var game = new Phaser.Game(960, 720, Phaser.CANVAS, "game"); //16:9 = 1120:630

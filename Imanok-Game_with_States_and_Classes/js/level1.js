@@ -6,7 +6,7 @@ var level1 = function(game) {
   var player1, player2;
   var baldy, npc1, npc2, fox1, bunny1;
   var exitWest, exitPotshop, exitInn, exitBlacksmith, exitItemshop, exitPlayerhouse, exitLodge, exitRanch;
-  var bullets;
+  var bullets, bullet;
   
   var movementDirection = null;
   var playerX;
@@ -142,7 +142,7 @@ level1.prototype = {
     this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     
     this.nextFire = 0;
-    this.fireRate = 250;
+    this.fireRate = 100;
     nextFire = this.game.add.group();
     fireRate = this.game.add.group();
 
@@ -169,35 +169,39 @@ level1.prototype = {
     }
     
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      if (this.game.time.time < this.nextFire) { return; }
+      if (this.game.time.time > this.nextFire) { 
       
-      bullet = new Bullet(this.game, player1.x + 40, player1.y, 'right');
-		  this.game.add.existing(bullet);
-      
-      this.nextFire = this.game.time.time + this.fireRate;
+        bullet = new Bullet(this.game, player1.x + 40, player1.y, 'right');
+        this.game.add.existing(bullet);
+        this.nextFire = this.game.time.time + this.fireRate;
+        
+      }
     } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      if (this.game.time.time < this.nextFire) { return; }
+      if (this.game.time.time > this.nextFire) { 
       
-      bullet = new Bullet(this.game, player1.x - 40, player1.y, 'left');
-		  this.game.add.existing(bullet);
-      
-      this.nextFire = this.game.time.time + this.fireRate;
+        bullet = new Bullet(this.game, player1.x - 40, player1.y, 'left');
+        this.game.add.existing(bullet);
+        this.nextFire = this.game.time.time + this.fireRate;
+        
+      }
     }
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      if (this.game.time.time < this.nextFire) { return; }
+      if (this.game.time.time > this.nextFire) { 
       
-      bullet = new Bullet(this.game, player1.x - 10, player1.y - 50, 'up');
-		  this.game.add.existing(bullet);
-      
-      this.nextFire = this.game.time.time + this.fireRate;
+        bullet = new Bullet(this.game, player1.x - 10, player1.y - 50, 'up');
+        this.game.add.existing(bullet);
+        this.nextFire = this.game.time.time + this.fireRate;
+        
+      }
     }
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      if (this.game.time.time < this.nextFire) { return; }
+      if (this.game.time.time > this.nextFire) { 
       
-      bullet = new Bullet(this.game, player1.x - 10, player1.y + 40, 'down');
-		  this.game.add.existing(bullet);
-      
-      this.nextFire = this.game.time.time + this.fireRate;
+        bullet = new Bullet(this.game, player1.x - 10, player1.y + 40, 'down');
+        this.game.add.existing(bullet);
+        this.nextFire = this.game.time.time + this.fireRate;
+        
+      }
     }
 
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
@@ -216,12 +220,12 @@ level1.prototype = {
 
   },
   render: function() {
-//    this.game.debug.body(fox1);
-//    this.game.debug.body(bunny1);
+//    this.game.debug.body(bullets);
+//    this.game.debug.body(bullet);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
-      this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
+//      this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
   },
 }
 

@@ -28,6 +28,12 @@ var Bullet = function (game, x, y, direction) {
 
     };
 
+    Bullet.prototype.render = function () {
+      
+//        this.game.debug.body(this);
+      
+    };
+
 
 //var Weapon = {};
 //
