@@ -35,41 +35,76 @@ var Bullet = function (game, x, y, direction) {
     };
 
 
-//var Weapon = {};
-//
-//    ////////////////////////////////////////////////////
-//    //  A single bullet is fired in front of the ship //
-//    ////////////////////////////////////////////////////
-//
-//    Weapon.SingleBullet = function (game) {
-//
-//        Phaser.Group.call(this, game, game.world, 'Single Bullet', false, true, Phaser.Physics.ARCADE);
-//
-//        this.nextFire = 0;
-//        this.bulletSpeed = 600;
-//        this.fireRate = 100;
-//
-//        for (var i = 0; i < 64; i++)
-//        {
-//            this.add(new Bullet(game, 'bullet5'), true);
-//        }
-//
-//        return this;
-//
-//    };
-//
-//    Weapon.SingleBullet.prototype = Object.create(Phaser.Group.prototype);
-//    Weapon.SingleBullet.prototype.constructor = Weapon.SingleBullet;
-//
-//    Weapon.SingleBullet.prototype.fire = function (source) {
-//
-//        if (this.game.time.time < this.nextFire) { return; }
-//
-//        var x = source.x + 10;
-//        var y = source.y + 10;
-//
-//        this.getFirstExists(false).fire(x, y, 0, this.bulletSpeed, 0, 0);
-//
+      /* Orbital mechanic, from level1.js create */
+//    orb = this.game.add.sprite(playerX, playerY, 'ball');
+//    orb.anchor.setTo(0.5);
+//    orb.pivot.y = -20;
+//    orb.pivot.x = 42;
+//    
+//    orb2 = this.game.add.sprite(playerX, playerY, 'ball');
+//    orb2.anchor.setTo(0.5);
+//    orb2.pivot.y = 49;
+//    orb2.pivot.x = 0;
+//    
+//    orb3 = this.game.add.sprite(playerX, playerY, 'ball');
+//    orb3.anchor.setTo(0.5);
+//    orb3.pivot.y = -20;
+//    orb3.pivot.x = -42;
+
+
+      /* Orbital mechanic, from level1.js update */
+//    orb.x = player1.x; 
+//    orb.y = player1.y;
+//    orb.rotation += 0.05;
+//    
+//    orb2.x = player1.x; 
+//    orb2.y = player1.y;
+//    orb2.rotation += 0.05;
+//    
+//    orb3.x = player1.x; 
+//    orb3.y = player1.y;
+//    orb3.rotation += 0.05;
+
+
+      /* Firing mechanic and fox spawner, from level1.js update */
+//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.F)) {
+//      fox = new walkingAnimal(this.game, player1.x, player1.y, 'fox');
+//		  this.game.add.existing(fox);
+//      playerGroup.add(fox);
+//    }
+//    
+//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+//      if (this.game.time.time > this.nextFire) { 
+//      
+//        bullet = new Bullet(this.game, player1.x + 40, player1.y, 'right');
+//        this.game.add.existing(bullet);
 //        this.nextFire = this.game.time.time + this.fireRate;
-//
-//    };
+//        
+//      }
+//    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+//      if (this.game.time.time > this.nextFire) { 
+//      
+//        bullet = new Bullet(this.game, player1.x - 40, player1.y, 'left');
+//        this.game.add.existing(bullet);
+//        this.nextFire = this.game.time.time + this.fireRate;
+//        
+//      }
+//    }
+//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+//      if (this.game.time.time > this.nextFire) { 
+//      
+//        bullet = new Bullet(this.game, player1.x - 10, player1.y - 50, 'up');
+//        this.game.add.existing(bullet);
+//        this.nextFire = this.game.time.time + this.fireRate;
+//        
+//      }
+//    }
+//    if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+//      if (this.game.time.time > this.nextFire) { 
+//      
+//        bullet = new Bullet(this.game, player1.x - 10, player1.y + 40, 'down');
+//        this.game.add.existing(bullet);
+//        this.nextFire = this.game.time.time + this.fireRate;
+//        
+//      }
+//    }

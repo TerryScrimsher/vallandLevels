@@ -59,27 +59,28 @@ level1.prototype = {
 
     //Create Groups
     playerGroup = this.game.add.group();
+    npcGroup = this.game.add.group();
     
     //Create NPCs
-    npc1 = new NPC(this.game, 1494, 1240, 'Rogue');
-		this.game.add.existing(npc1);
-    playerGroup.add(npc1);
+    npc = new NPC(this.game, 1494, 1240, 'Rogue');
+		this.game.add.existing(npc);
+    npcGroup.add(npc);
 
-    npc2 = new NPC(this.game, 2020, 1430, 'Smith');
-		this.game.add.existing(npc2);
-    playerGroup.add(npc2);
+    npc = new NPC(this.game, 2020, 1430, 'Smith');
+		this.game.add.existing(npc);
+    npcGroup.add(npc);
     
-    dude = new walkingNPC(this.game, 2020, 1530, 'Smith');
-		this.game.add.existing(dude);
-    playerGroup.add(dude);
+    npc = new walkingNPC(this.game, 2020, 1530, 'Smith');
+		this.game.add.existing(npc);
+    npcGroup.add(npc);
     
-    buddy = new walkingNPC(this.game, 1620, 1030, 'Smith');
-		this.game.add.existing(buddy);
-    playerGroup.add(buddy);
+    npc = new walkingNPC(this.game, 1620, 1030, 'Smith');
+		this.game.add.existing(npc);
+    npcGroup.add(npc);
     
-    pal = new walkingNPC(this.game, 820, 800, 'Smith');
-		this.game.add.existing(pal);
-    playerGroup.add(pal);
+    npc = new walkingNPC(this.game, 820, 800, 'Smith');
+		this.game.add.existing(npc);
+    npcGroup.add(npc);
     
     fox1 = new walkingAnimal(this.game, 1020, 1530, 'fox');
 		this.game.add.existing(fox1);
@@ -103,22 +104,6 @@ level1.prototype = {
 		this.game.add.existing(player1);
     playerGroup.add(player1);
     this.game.physics.arcade.enable(playerGroup);
-    
-    //Basic Orbitals
-    orb = this.game.add.sprite(playerX, playerY, 'ball');
-    orb.anchor.setTo(0.5);
-    orb.pivot.y = -20;
-    orb.pivot.x = 42;
-    
-    orb2 = this.game.add.sprite(playerX, playerY, 'ball');
-    orb2.anchor.setTo(0.5);
-    orb2.pivot.y = 49;
-    orb2.pivot.x = 0;
-    
-    orb3 = this.game.add.sprite(playerX, playerY, 'ball');
-    orb3.anchor.setTo(0.5);
-    orb3.pivot.y = -20;
-    orb3.pivot.x = -42;
     
     //Create Gates 
     exitWest = new Gate(this.game, 1, 1344, 3.2, 64);
@@ -149,66 +134,16 @@ level1.prototype = {
   },
   update: function() {
     
-    //Basic Orbitals, follow player
-    orb.x = player1.x; 
-    orb.y = player1.y;
-    orb.rotation += 0.05;
-    
-    orb2.x = player1.x; 
-    orb2.y = player1.y;
-    orb2.rotation += 0.05;
-    
-    orb3.x = player1.x; 
-    orb3.y = player1.y;
-    orb3.rotation += 0.05;
-    
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.F)) {
-      fox = new walkingAnimal(this.game, player1.x, player1.y, 'fox');
-		  this.game.add.existing(fox);
-      playerGroup.add(fox);
-    }
-    
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      if (this.game.time.time > this.nextFire) { 
-      
-        bullet = new Bullet(this.game, player1.x + 40, player1.y, 'right');
-        this.game.add.existing(bullet);
-        this.nextFire = this.game.time.time + this.fireRate;
-        
-      }
-    } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      if (this.game.time.time > this.nextFire) { 
-      
-        bullet = new Bullet(this.game, player1.x - 40, player1.y, 'left');
-        this.game.add.existing(bullet);
-        this.nextFire = this.game.time.time + this.fireRate;
-        
-      }
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      if (this.game.time.time > this.nextFire) { 
-      
-        bullet = new Bullet(this.game, player1.x - 10, player1.y - 50, 'up');
-        this.game.add.existing(bullet);
-        this.nextFire = this.game.time.time + this.fireRate;
-        
-      }
-    }
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-      if (this.game.time.time > this.nextFire) { 
-      
-        bullet = new Bullet(this.game, player1.x - 10, player1.y + 40, 'down');
-        this.game.add.existing(bullet);
-        this.nextFire = this.game.time.time + this.fireRate;
-        
-      }
-    }
-
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
   
     this.game.physics.arcade.collide(playerGroup, collisionlayer);
     this.game.physics.arcade.collide(playerGroup, playerGroup);
+//    this.game.physics.arcade.collide(npcGroup, playerGroup);
+    this.game.physics.arcade.collide(npcGroup, collisionlayer);
     
+    this.game.physics.arcade.collide(player1, npcGroup, function(player, npc){npc.kill()}); 
+//    this.player1.body.collides(this.enemyCG, this.killEnemy, this);
+ 
     this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left")}, null, this);
     this.game.physics.arcade.collide(player1, exitPotshop, function(){exitPoint(this.game, "Level1-Potshop", 801, 940, "up")}, null, this);
     this.game.physics.arcade.collide(player1, exitInn, function(){exitPoint(this.game, "Level1-Inn", 801, 940, "up")}, null, this);
