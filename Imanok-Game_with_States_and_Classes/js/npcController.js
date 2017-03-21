@@ -7,6 +7,7 @@ function NPC (game, x, y, select) {
     this.game.physics.arcade.enable(this);
     this.body.setSize(29, 28, 11, 44);
     this.body.immovable = true;
+    this.anchor.setTo(.5, .5);
 }
 
 NPC.prototype = Object.create(Phaser.Sprite.prototype);
@@ -38,6 +39,7 @@ function walkingNPC (game, x, y, select) {
     this.animations.play('emoteSprite', 6, true);
     this.body.immovable = true;
     this.body.collideWorldBounds = true;
+    this.anchor.setTo(.5, .5);
     this.body.linearDamping = 1;
   
     var walkDuration = 0;
@@ -151,6 +153,7 @@ function walkingAnimal (game, x, y, select) {
     this.body.immovable = true;
     this.body.collideWorldBounds = true;
     this.body.linearDamping = 1;
+    this.anchor.setTo(.5, .5);
   
     var walkDuration = 0;
     var direction = 2;

@@ -52,6 +52,13 @@ var Bullet = function (game, x, y, direction) {
 //    orb3.pivot.x = -42;
 
 
+      /* Firing mechanic, from level1.js create */
+//      this.nextFire = 0;
+//      this.fireRate = 100;
+//      nextFire = this.game.add.group();
+//      fireRate = this.game.add.group();
+
+
       /* Orbital mechanic, from level1.js update */
 //    orb.x = player1.x; 
 //    orb.y = player1.y;

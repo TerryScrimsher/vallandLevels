@@ -7,6 +7,7 @@ var level1 = function(game) {
   var baldy, npc1, npc2, fox1, bunny1;
   var exitWest, exitPotshop, exitInn, exitBlacksmith, exitItemshop, exitPlayerhouse, exitLodge, exitRanch;
   var bullets, bullet;
+  var text2;
   
   var movementDirection = null;
   var playerX;
@@ -62,25 +63,25 @@ level1.prototype = {
     npcGroup = this.game.add.group();
     
     //Create NPCs
-    npc = new NPC(this.game, 1494, 1240, 'Rogue');
+    npc = new NPC(this.game, 1516, 1270, 'Rogue');
 		this.game.add.existing(npc);
-    npcGroup.add(npc);
+    playerGroup.add(npc);
 
-    npc = new NPC(this.game, 2020, 1430, 'Smith');
+    npc = new NPC(this.game, 2050, 1460, 'Smith');
 		this.game.add.existing(npc);
-    npcGroup.add(npc);
+    playerGroup.add(npc);
     
-    npc = new walkingNPC(this.game, 2020, 1530, 'Smith');
+    npc = new walkingNPC(this.game, 2030, 1540, 'Smith');
 		this.game.add.existing(npc);
-    npcGroup.add(npc);
+    playerGroup.add(npc);
     
     npc = new walkingNPC(this.game, 1620, 1030, 'Smith');
 		this.game.add.existing(npc);
-    npcGroup.add(npc);
+    playerGroup.add(npc);
     
     npc = new walkingNPC(this.game, 820, 800, 'Smith');
 		this.game.add.existing(npc);
-    npcGroup.add(npc);
+    playerGroup.add(npc);
     
     fox1 = new walkingAnimal(this.game, 1020, 1530, 'fox');
 		this.game.add.existing(fox1);
@@ -126,24 +127,16 @@ level1.prototype = {
     text2.fixedToCamera = true;
     this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     
-    this.nextFire = 0;
-    this.fireRate = 100;
-    nextFire = this.game.add.group();
-    fireRate = this.game.add.group();
-
   },
   update: function() {
     
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
   
     this.game.physics.arcade.collide(playerGroup, collisionlayer);
-    this.game.physics.arcade.collide(playerGroup, playerGroup);
-//    this.game.physics.arcade.collide(npcGroup, playerGroup);
-    this.game.physics.arcade.collide(npcGroup, collisionlayer);
     
-    this.game.physics.arcade.collide(player1, npcGroup, function(player, npc){npc.kill()}); 
-//    this.player1.body.collides(this.enemyCG, this.killEnemy, this);
- 
+//    this.game.physics.arcade.collide(player1, playerGroup, function(player, npc){npc.kill();}); 
+    this.game.physics.arcade.collide(player1, playerGroup, function(player, npc){console.log("%cOuch!", "color:white; background:red");});
+
     this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left")}, null, this);
     this.game.physics.arcade.collide(player1, exitPotshop, function(){exitPoint(this.game, "Level1-Potshop", 801, 940, "up")}, null, this);
     this.game.physics.arcade.collide(player1, exitInn, function(){exitPoint(this.game, "Level1-Inn", 801, 940, "up")}, null, this);
@@ -155,12 +148,15 @@ level1.prototype = {
 
   },
   render: function() {
-//    this.game.debug.body(bullets);
-//    this.game.debug.body(bullet);
+//    this.game.debug.body(player1);
+//    this.game.debug.body(npc1);
+//    
+//    this.game.debug.text(player1.y, 10, 20);
+//    this.game.debug.text(npc1.y, 10, 40);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
 //    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
-//      this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
+//    this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
   },
 }
 
