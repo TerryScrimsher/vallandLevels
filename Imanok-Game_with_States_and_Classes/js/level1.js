@@ -7,11 +7,12 @@ var level1 = function(game) {
   var baldy, npc1, npc2, fox1, bunny1;
   var exitWest, exitPotshop, exitInn, exitBlacksmith, exitItemshop, exitPlayerhouse, exitLodge, exitRanch;
   var bullets, bullet;
-  var text2;
   
   var movementDirection = null;
   var playerX;
   var playerY;
+  
+  var coinText, coin;
 
 }
 
@@ -121,14 +122,21 @@ level1.prototype = {
 
     //Resizes the game world to match the layer dimensions
     layer.resizeWorld();
-
-    //Hud & Text Elements
-    var text2 = this.game.add.bitmapText(40, 30, 'sakredfont', 'Town', 52);
-    text2.fixedToCamera = true;
-    this.game.add.tween(text2).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     
+    coins = 0;
+    
+    //Hud & Text Elements
+    var locationText = this.game.add.bitmapText(40, 30, 'sakredfont', 'Town', 52);
+    locationText.fixedToCamera = true;
+    this.game.add.tween(locationText).to( { alpha: 0 }, 4000, "Linear", true, 2000);
+    
+    coinText = this.game.add.bitmapText(800, 30, 'quirkfont', '$ ' + coins, 52);
+    coinText.fixedToCamera = true;
+     
   },
   update: function() {
+    
+    this.game.input.onDown.addOnce(updateText, this);
     
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
   
@@ -155,9 +163,18 @@ level1.prototype = {
 //    this.game.debug.text(npc1.y, 10, 40);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
-//    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
+    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
+//    this.game.debug.text('Width: ' + window.innerWidth + " | Height: " + window.innerHeight, 10, 40);
 //    this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
   },
+}
+
+function updateText() {
+
+    coins++;
+
+    coinText.setText("$ " + coins);
+
 }
 
 //Load Successful!
