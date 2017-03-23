@@ -4,6 +4,7 @@ var preload = function(game){}
 var playerCharacterSpritesheet = "img/chara2.png";
 var animalCharacterSpritesheet = "img/animals2.png";
 var emoteSpritesheet = "img/emote2.png";
+var itemSpritesheet = "img/Item.png";
 
 preload.prototype = {
 	preload: function(){ 
@@ -28,6 +29,8 @@ preload.prototype = {
     this.game.load.spritesheet('emoteSprite', emoteSpritesheet, 52, 72, 70);
     //Load animal spritesheet
     this.game.load.spritesheet('animalSprite', animalCharacterSpritesheet, 84, 74, 100);
+    //Load itemsheet
+    this.game.load.spritesheet('itemSprite', itemSpritesheet, 32, 32, 1000);
     
     this.game.load.image('ball', 'img/blue_ball.png');
     

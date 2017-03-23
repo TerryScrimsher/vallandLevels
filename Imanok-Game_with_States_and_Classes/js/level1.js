@@ -13,6 +13,8 @@ var level1 = function(game) {
   var playerY;
   
   var coinText, coin;
+  
+  var i;
 
 }
 
@@ -62,6 +64,7 @@ level1.prototype = {
     //Create Groups
     playerGroup = this.game.add.group();
     npcGroup = this.game.add.group();
+    coinGroup = this.game.add.group();
     
     //Create NPCs
     npc = new NPC(this.game, 1516, 1270, 'Rogue');
@@ -100,6 +103,28 @@ level1.prototype = {
 		this.game.add.existing(bunny2);
     playerGroup.add(bunny2);
     
+    
+    i = 0;
+    while (i < 50) {
+      coin = new Item(this.game, (Math.random() * (3000 - 1) + 1), (Math.random() * (3000 - 1) + 1));
+//      coin = new Item(this.game, (Math.random() * (this.world.width - 1) + 1), (Math.random() * (this.world.height - 1) + 1));
+      this.game.add.existing(coin);
+      coinGroup.add(coin);
+      i++
+    }
+    
+    coin = new Item(this.game, 1600, 1500);
+		this.game.add.existing(coin);
+    coinGroup.add(coin);
+    
+    coin = new Item(this.game, 1600, 1600);
+		this.game.add.existing(coin);
+    coinGroup.add(coin);
+    
+    coin = new Item(this.game, 1600, 1700);
+		this.game.add.existing(coin);
+    coinGroup.add(coin);
+    
     //Init player to level
     player1 = new Player(this.game, playerX, playerY, playerDirection);
     
@@ -136,7 +161,7 @@ level1.prototype = {
   },
   update: function() {
     
-    this.game.input.onDown.addOnce(updateText, this);
+//    this.game.input.onDown.addOnce(updateText, this);
     
     playerGroup.sort('y', Phaser.Group.SORT_ASCENDING);
   
@@ -144,6 +169,7 @@ level1.prototype = {
     
 //    this.game.physics.arcade.collide(player1, playerGroup, function(player, npc){npc.kill();}); 
     this.game.physics.arcade.collide(player1, playerGroup, function(player, npc){console.log("%cOuch!", "color:white; background:red");});
+    this.game.physics.arcade.collide(player1, coinGroup, function(player, coin){coin.kill(); updateText();});
 
     this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left")}, null, this);
     this.game.physics.arcade.collide(player1, exitPotshop, function(){exitPoint(this.game, "Level1-Potshop", 801, 940, "up")}, null, this);

@@ -281,4 +281,20 @@ function moveAnimalRight (obj, select) {
 }
 
 
+//Stationary NPC creation class
+function Item (game, x, y) { 
+    Phaser.Sprite.call(this, game, x, y, "itemSprite");
+//		game.physics.enable(this, Phaser.Physics.ARCADE);	
+
+//    this.game.add.sprite(x, y, 'itemSprite');
+    this.frame = 524;
+    this.game.physics.arcade.enable(this);
+    this.body.immovable = true;
+    this.anchor.setTo(.5, .5);
+}
+
+Item.prototype = Object.create(Phaser.Sprite.prototype);
+Item.prototype.constructor = Item;
+
+
 //https://www.w3schools.com/js/js_object_prototypes.asp
