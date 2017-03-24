@@ -1,7 +1,7 @@
 //Stationary NPC creation class
 function NPC (game, x, y, select) { 
     Phaser.Sprite.call(this, game, x, y, "emoteSprite");
-		game.physics.enable(this, Phaser.Physics.ARCADE);	
+//		game.physics.enable(this, Phaser.Physics.ARCADE);	
     this.animations.add('emoteSprite', SelectNPC(select));
     this.animations.play('emoteSprite', 6, true);
     this.game.physics.arcade.enable(this);
@@ -289,7 +289,7 @@ function Item (game, x, y) {
 //    this.game.add.sprite(x, y, 'itemSprite');
     this.frame = 524;
     this.game.physics.arcade.enable(this);
-    this.body.immovable = true;
+//    this.body.immovable = true;
     this.anchor.setTo(.5, .5);
 }
 
