@@ -287,7 +287,7 @@ function Item (game, x, y) {
 //		game.physics.enable(this, Phaser.Physics.ARCADE);	
 
 //    this.game.add.sprite(x, y, 'itemSprite');
-    this.frame = 524;
+    this.frame = 512;
     this.game.physics.arcade.enable(this);
 //    this.body.immovable = true;
     this.anchor.setTo(.5, .5);

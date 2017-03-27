@@ -1,4 +1,5 @@
 var PlayerDirection = null;
+
 //var obj;
 
 Player = function (game, x, y, playerDirection) {
@@ -13,7 +14,8 @@ Player = function (game, x, y, playerDirection) {
     this.body.linearDamping = 1;
     this.anchor.setTo(.5, .5);
     this.PlayerDirection = playerDirection;
-  
+    walking1 = this.game.add.audio('footStep1');
+    
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -72,9 +74,13 @@ Player.prototype.update = function() {
       this.game.state.start("Level1", true, false);
     } else {
 
+      walking1.pause();
+      
       if (this.PlayerDirection == "up") {
+        walking1.pause();
         standStillUp(this);
         this.PlayerDirection = null;
+        
       }
       if (this.PlayerDirection == "down") {
         standStillDown(this);
@@ -115,6 +121,8 @@ Player.prototype.update = function() {
   }
 
   function moveUp (obj) {
+    
+    walking1.loopFull(0.1);
     obj.PlayerDirection = "up";
 
     obj.loadTexture('playerSprite');
@@ -122,6 +130,8 @@ Player.prototype.update = function() {
     obj.animations.play('playerSprite', 5, true);
   }
   function moveDown (obj) {
+    walking1.loopFull(0.1);
+    
     obj.PlayerDirection = "down";
 
     obj.loadTexture('playerSprite');
@@ -129,6 +139,8 @@ Player.prototype.update = function() {
     obj.animations.play('playerSprite', 5, true);
   }
   function moveLeft(obj) {
+    walking1.loopFull(0.1);
+    
     obj.PlayerDirection = "left";
 
     obj.loadTexture('playerSprite');
@@ -136,6 +148,8 @@ Player.prototype.update = function() {
     obj.animations.play('playerSprite', 5, true);
   }
   function moveRight (obj) {
+    walking1.loopFull(0.1);
+    
     obj.PlayerDirection = "right";
 
     obj.loadTexture('playerSprite');

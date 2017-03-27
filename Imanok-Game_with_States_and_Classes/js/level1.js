@@ -64,7 +64,7 @@ level1.prototype = {
     //Create Groups
     playerGroup = this.game.add.group();
     npcGroup = this.game.add.group();
-    coinGroup = this.game.add.group();
+//    coinGroup = this.game.add.group();
     coinGroup = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
     
     //Create NPCs
@@ -103,6 +103,12 @@ level1.prototype = {
     bunny2 = new walkingAnimal(this.game, 920, 300, 'bunny');
 		this.game.add.existing(bunny2);
     playerGroup.add(bunny2);
+    
+    music = this.game.add.audio('mystic');
+    music.loopFull(0.3);
+    
+    collectCoin1 = this.game.add.audio('collectCoin1');
+    collectCoin2 = this.game.add.audio('collectCoin2');
     
     //Creates coins, needs to be moved to it's own class
     i = 0;
@@ -190,6 +196,14 @@ function updateText() {
     coins++;
 
     coinText.setText("$ " + coins);
+  
+    if ((Math.floor((Math.random() * 3) + 1)) == 1) {
+      collectCoin1.volume = 0.3;
+      collectCoin1.play();
+    } else {
+      collectCoin2.volume = 0.5;
+      collectCoin2.play();
+    }
 
 }
 

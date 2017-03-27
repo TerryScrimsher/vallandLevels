@@ -34,6 +34,16 @@ preload.prototype = {
     
     this.game.load.image('ball', 'img/blue_ball.png');
     
+    
+    this.game.load.audio('footStep1', 'sound/footstep05.ogg');
+    this.game.load.audio('footStep2', 'sound/footstep06.ogg');
+    this.game.load.audio('collectCoin1', 'sound/handleCoins.ogg');
+    this.game.load.audio('collectCoin2', 'sound/handleCoins2.ogg');
+    this.game.load.audio('german', 'sound/RetroMystic.ogg');
+    this.game.load.audio('comedy', 'sound/RetroComedy.ogg');
+    this.game.load.audio('beat', 'sound/RetroBeat.ogg');
+    this.game.load.audio('mystic', 'sound/RetroMystic.ogg');
+    
     //Loads level tilesets
     this.game.load.image('tiles', 'img/a_terrain.png');
     this.game.load.image('tiles2', 'img/outside.png');
