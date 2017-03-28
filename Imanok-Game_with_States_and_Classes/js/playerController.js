@@ -14,8 +14,7 @@ Player = function (game, x, y, playerDirection) {
     this.body.linearDamping = 1;
     this.anchor.setTo(.5, .5);
     this.PlayerDirection = playerDirection;
-    walking1 = this.game.add.audio('footStep1');
-    
+    walking1 = this.game.add.audio('footStep1'); 
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -121,8 +120,8 @@ Player.prototype.update = function() {
   }
 
   function moveUp (obj) {
-    
     walking1.loopFull(0.1);
+    
     obj.PlayerDirection = "up";
 
     obj.loadTexture('playerSprite');

@@ -64,7 +64,7 @@ level1.prototype = {
     //Create Groups
     playerGroup = this.game.add.group();
     npcGroup = this.game.add.group();
-//    coinGroup = this.game.add.group();
+    coinGroup = this.game.add.group();
     coinGroup = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
     
     //Create NPCs
@@ -104,11 +104,12 @@ level1.prototype = {
 		this.game.add.existing(bunny2);
     playerGroup.add(bunny2);
     
-    music = this.game.add.audio('mystic');
-    music.loopFull(0.3);
+//    music = this.game.add.audio('mystic');
+//    music.loopFull(0.3);
     
     collectCoin1 = this.game.add.audio('collectCoin1');
     collectCoin2 = this.game.add.audio('collectCoin2');
+    collectCoin2.volume = 0.3;
     
     //Creates coins, needs to be moved to it's own class
     i = 0;
@@ -125,6 +126,8 @@ level1.prototype = {
     player1 = new Player(this.game, playerX, playerY, playerDirection);
 		this.game.add.existing(player1);
     playerGroup.add(player1);
+    
+    playerGroup.add(coinGroup);
     
     //Create Gates 
     exitWest = new Gate(this.game, 1, 1344, 3.2, 64);
@@ -167,7 +170,7 @@ level1.prototype = {
     this.game.physics.arcade.collide(player1, playerGroup, function(player, npc){console.log("%cOuch!", "color:white; background:red");});
     
 
-    this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left")}, null, this);
+    this.game.physics.arcade.collide(player1, exitWest, function(){exitPoint(this.game, "Level2", 3176, player1.y, "left"); walking1.pause();}, null, this);
     this.game.physics.arcade.collide(player1, exitPotshop, function(){exitPoint(this.game, "Level1-Potshop", 801, 940, "up")}, null, this);
     this.game.physics.arcade.collide(player1, exitInn, function(){exitPoint(this.game, "Level1-Inn", 801, 940, "up")}, null, this);
     this.game.physics.arcade.collide(player1, exitBlacksmith, function(){exitPoint(this.game, "Level1-Blacksmith", 801, 940, "up")}, null, this);
@@ -197,13 +200,7 @@ function updateText() {
 
     coinText.setText("$ " + coins);
   
-    if ((Math.floor((Math.random() * 3) + 1)) == 1) {
-      collectCoin1.volume = 0.3;
-      collectCoin1.play();
-    } else {
-      collectCoin2.volume = 0.5;
-      collectCoin2.play();
-    }
+    collectCoin2.play();
 
 }
 

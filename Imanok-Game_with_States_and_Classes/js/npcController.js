@@ -37,7 +37,7 @@ function walkingNPC (game, x, y, select) {
     this.body.setSize(29, 28, 11, 44);
     this.animations.add('emoteSprite', SelectNPC(select));
     this.animations.play('emoteSprite', 6, true);
-    this.body.immovable = true;
+//    this.body.immovable = true;
     this.body.collideWorldBounds = true;
     this.anchor.setTo(.5, .5);
     this.body.linearDamping = 1;
@@ -150,7 +150,7 @@ function walkingAnimal (game, x, y, select) {
 //    this.body.setSize(60, 24, 12, 44);
     this.animations.add('animalSprite', SelectAnimal(select));
     this.animations.play('animalSprite', 6, true);
-    this.body.immovable = true;
+//    this.body.immovable = true;
     this.body.collideWorldBounds = true;
     this.body.linearDamping = 1;
     this.anchor.setTo(.5, .5);

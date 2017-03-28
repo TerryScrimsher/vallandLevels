@@ -1,16 +1,16 @@
 # Imanok: Domain of Valland
 ### Version 0.0.1
 
-**Description** Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+**Imanok is a classic RPG inspired minigame hub. The main purpose of this game is to serve as a test enviroment for phaser code.
 
 ## Recent Features:
-- One
-- Two
-- Three
+- Added level music (Currently Town only)
+- Added coin pickup sfx (Currently Town only)
+- Added walking sfx (Currently Town only, need to slow track down)
 
 ## Project Backlog:
-- One
-- Two
-- Three
+- Add sound to player controller and game controller
+- Create game controller with global game functions and values
+- 
 
 [Formatting](https://help.github.com/articles/basic-writing-and-formatting-syntax/#lists)

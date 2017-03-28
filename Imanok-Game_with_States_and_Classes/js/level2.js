@@ -101,6 +101,7 @@ level2.prototype = {
   },
 
   exitLevel: function() {
+    walking1.pause();
     this.game.state.start("Level1", true, false, 27, player2.y, "right");
   }
 

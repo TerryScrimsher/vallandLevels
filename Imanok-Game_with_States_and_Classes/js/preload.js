@@ -35,7 +35,7 @@ preload.prototype = {
     this.game.load.image('ball', 'img/blue_ball.png');
     
     
-    this.game.load.audio('footStep1', 'sound/footstep05.ogg');
+    this.game.load.audio('footStep1', 'sound/footstep05_point12s.ogg');
     this.game.load.audio('footStep2', 'sound/footstep06.ogg');
     this.game.load.audio('collectCoin1', 'sound/handleCoins.ogg');
     this.game.load.audio('collectCoin2', 'sound/handleCoins2.ogg');
@@ -66,6 +66,8 @@ preload.prototype = {
 
 	},
   	create: function(){
+    music = this.game.add.audio('mystic');
+    music.loopFull(0.3);
 		this.game.state.start("Level1");
 	}
 }
