@@ -12,7 +12,7 @@ var level1 = function(game) {
   var playerX;
   var playerY;
   
-  var coinText, coin;
+  var coinText, coin, item1;
   
   var i;
 
@@ -148,10 +148,26 @@ level1.prototype = {
     coins = 0;
     
     //Hud & Text Elements
-    var locationText = this.game.add.bitmapText(40, 30, 'sakredfont', 'Town', 52);
+    var locationText = this.game.add.bitmapText(434, 30, 'sakredfont', 'Town', 52);
     locationText.fixedToCamera = true;
     this.game.add.tween(locationText).to( { alpha: 0 }, 4000, "Linear", true, 2000);
     
+    var panel1 = this.game.add.sprite(30, 30, 'panel');
+    panel1.fixedToCamera = true;
+    
+    var panel2 = this.game.add.sprite(90, 30, 'panel');
+    panel2.fixedToCamera = true;
+    
+    var item1 = this.game.add.sprite(37, 37, 'itemSprite');
+    item1.frame = Math.round((Math.random() * (200 - 1)) + 5);    
+//    item1.frame = 1113;  
+    item1.fixedToCamera = true;
+    
+    var item2 = this.game.add.sprite(97, 37, 'itemSprite');
+    item2.frame = Math.round((Math.random() * (200 - 1)) + 5);    
+//    item1.frame = 1113;  
+    item2.fixedToCamera = true;
+
     coinText = this.game.add.bitmapText(800, 30, 'quirkfont', '$ ' + coins, 52);
     coinText.fixedToCamera = true;
      
@@ -182,26 +198,22 @@ level1.prototype = {
   },
   render: function() {
 //    this.game.debug.body(player1);
-//    this.game.debug.body(npc1);
+//    this.game.debug.body(item1);
 //    
 //    this.game.debug.text(player1.y, 10, 20);
 //    this.game.debug.text(npc1.y, 10, 40);
 
 //    this.game.debug.text('Sprite z-depth: ' + player1.z, 10, 20);
-    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
+//    this.game.debug.text('FPS:' + this.game.time.fps, 10, 20);
 //    this.game.debug.text('Width: ' + window.innerWidth + " | Height: " + window.innerHeight, 10, 40);
 //    this.game.debug.text('Time:' + this.game.time.time + " - " + this.nextFire + " - " + this.fireRate, 10, 20);
   },
 }
 
 function updateText() {
-
     coins++;
-
     coinText.setText("$ " + coins);
-  
     collectCoin2.play();
-
 }
 
 //Load Successful!

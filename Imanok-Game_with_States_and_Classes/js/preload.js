@@ -30,10 +30,10 @@ preload.prototype = {
     //Load animal spritesheet
     this.game.load.spritesheet('animalSprite', animalCharacterSpritesheet, 84, 74, 100);
     //Load itemsheet
-    this.game.load.spritesheet('itemSprite', itemSpritesheet, 32, 32, 1000);
+    this.game.load.spritesheet('itemSprite', itemSpritesheet, 32, 32, 5000);
     
     this.game.load.image('ball', 'img/blue_ball.png');
-    
+    this.game.load.image('panel', 'img/buttonSquare.png');
     
     this.game.load.audio('footStep1', 'sound/footstep05_point12s.ogg');
     this.game.load.audio('footStep2', 'sound/footstep06.ogg');
