@@ -50,6 +50,9 @@ level1.prototype = {
     map.addTilesetImage('outside', 'tiles2');
     map.addTilesetImage('house', 'tiles3');
     map.addTilesetImage('water_updated', 'tiles4');
+    map.addTilesetImage('tileB_farmA', 'tiles9');  
+    map.addTilesetImage('tileB_farmB', 'tiles10');   
+      
     //Map Collision Between
     map.setCollisionBetween(0, 10000, true, 'Collision', 'true');
 

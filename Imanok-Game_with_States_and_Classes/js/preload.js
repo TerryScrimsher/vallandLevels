@@ -53,7 +53,8 @@ preload.prototype = {
     this.game.load.image('tiles6', 'img/inside.png');
     this.game.load.image('tiles7', 'img/inside_ceilingborders_updated.png');
     this.game.load.image('tiles8', 'img/tiles_kitchen.png');
-  
+    this.game.load.image('tiles9', 'img/tileB_farmA.png');    
+    this.game.load.image('tiles10', 'img/tileB_farmB.png');  
   
     //Load bitmap font
 //    game.load.bitmapFont('sakredfont', 'fonts/sakredfont.png', 'fonts/sakredfont.fnt');
